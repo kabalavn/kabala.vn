@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đạo An - The Peaceful Way</title>
+    <meta name="description" content="Trực quan hóa các lý thuyết về Đạo An: Minh triết của sự bình an.">
+
+    <!-- Google Fonts: Cormorant Garamond for headings, Lato for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Lato:wght@300;400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Canvas for Atmosphere -->
+    <canvas id="atmosphere-canvas"></canvas>
+
+    <!-- Navigation (Minimalist) -->
+    <nav class="navbar">
+        <div class="logo">Đạo An</div>
+        <ul class="nav-links">
+            <li><a href="#roots">Khởi Nguyên</a></li>
+            <li><a href="#path">Con Đường</a></li>
+            <li><a href="#circle">Hiếu Đạo</a></li>
+            <li><a href="#meditation">Tĩnh Lặng</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Hero Section: Full Screen, Atmospheric -->
+        <header class="hero">
+            <div class="hero-content">
+                <h1 class="main-title">Đạo <span class="accent-text">An</span></h1>
+                <p class="poetic-subtitle">"Vạn vật biến động, tâm bất biến.<br>Tìm lại sự tĩnh lặng giữa dòng đời."</p>
+                <div class="scroll-indicator">
+                    <span>Khám phá</span>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Section 1: The Roots (Immersive Text Reveal) -->
+        <section id="roots" class="section split-layout">
+            <div class="text-block fade-reveal">
+                <h2 class="chapter-title">I. Cội Rễ Khổ Đau</h2>
+                <p class="chapter-intro">Để tìm thấy An, trước tiên phải hiểu vì sao ta Bất An.</p>
+            </div>
+
+            <div class="concept-container">
+                <div class="concept-item fade-up">
+                    <div class="symbol-circle">🌪</div>
+                    <h3>Lòng Tham</h3>
+                    <p>Sự khao khát không đáy. Khi tâm trí mải mê đuổi theo cái "chưa có", nó quên mất sự bình yên của
+                        cái "đang là".</p>
+                </div>
+                <div class="concept-divider"></div>
+                <div class="concept-item fade-up delay-1">
+                    <div class="symbol-circle">🪞</div>
+                    <h3>Cái Tôi</h3>
+                    <p>Bức tường ngăn cách ta với thế giới. Cái tôi càng lớn, nỗi cô đơn càng sâu, sự hòa hợp càng xa
+                        vời.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Path (Scrollytelling Vertical Line) -->
+        <section id="path" class="section path-section">
+            <h2 class="chapter-title center-text fade-reveal">II. Hành Trình Trở Về</h2>
+            <p class="chapter-intro center-text fade-reveal">Hành trình từng bước từ việc thấu hiểu bản thân đến tìm
+                thấy ý nghĩa cuộc đời.</p>
+
+            <div class="path-container">
+                <svg class="path-line-svg" viewBox="0 0 100 800" preserveAspectRatio="none">
+                    <path class="drawing-line" d="M50,0 C50,200 80,300 50,400 S20,600 50,800" />
+                </svg>
+
+                <div class="step-node step-1 fade-in-side right-align">
+                    <span class="step-number">01</span>
+                    <h3>Thấu Hiểu</h3>
+                    <p>Nhìn sâu vào chính mình. Chấp nhận cả ánh sáng và bóng tối bên trong.</p>
+                </div>
+
+                <div class="step-node step-2 fade-in-side left-align">
+                    <span class="step-number">02</span>
+                    <h3>Hạnh Phúc</h3>
+                    <p>Không phải đích đến xa xôi, mà là niềm vui giản đơn trong từng hơi thở hiện tại.</p>
+                </div>
+
+                <div class="step-node step-3 fade-in-side right-align">
+                    <span class="step-number">03</span>
+                    <h3>Ý Nghĩa</h3>
+                    <p>Sống là sẻ chia. Hạnh phúc chỉ trọn vẹn khi nó được lan tỏa.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="circle" class="section mandala-section">
+            <h2 class="chapter-title center-text fade-reveal" style="position: absolute; top: 10%; width: 100%;">Hiếu
+                Đạo</h2>
+            <p class="chapter-intro center-text fade-reveal" style="position: absolute; top: 18%; width: 100%;">Năm giá
+                trị cốt lõi xoay quanh tâm An, tạo nên sự cân bằng bền vững.</p>
+
+            <div class="mandala-container fade-scale">
+                <div class="glowing-orb core" id="core-orb">
+                    <span class="orb-text">An</span>
+                </div>
+
+                <!-- Orbiting Satellites -->
+                <div class="orbit-ring">
+                    <div class="satellite-orb sat-hieu" data-id="hieu"><span>Hiếu</span></div>
+                    <div class="satellite-orb sat-dao" data-id="dao"><span>Đạo</span></div>
+                    <div class="satellite-orb sat-duc" data-id="duc"><span>Đức</span></div>
+                    <div class="satellite-orb sat-phuc" data-id="phuc"><span>Phúc</span></div>
+                    <div class="satellite-orb sat-tai" data-id="tai"><span>Tài</span></div>
+                </div>
+            </div>
+
+            <div class="mandala-desc" id="mandala-desc">
+                <h3 id="m-title">Tâm An</h3>
+                <p id="m-text">Gốc rễ của mọi sự an lành.</p>
+            </div>
+        </section>
+
+        <!-- Section 4: Meditation (Minimalist Flow) -->
+        <section id="meditation" class="section stillness-section">
+            <h2 class="chapter-title center-text fade-reveal">III. Thực Hành</h2>
+
+            <div class="meditation-flow">
+                <div class="flow-step">
+                    <h4>Thiền</h4>
+                    <span class="flow-connector">⟶</span>
+                </div>
+                <div class="flow-step">
+                    <h4>Tĩnh</h4>
+                    <span class="flow-connector">⟶</span>
+                </div>
+                <div class="flow-step">
+                    <h4>Tuệ</h4>
+                </div>
+            </div>
+
+            <div class="final-quote fade-in-up">
+                <p>"Cân bằng không phải là đứng yên.<br>Mà là giữ được tâm an giữa vạn biến."</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Đạo An. <br> <span class="small-text">Hành trình về miền Tĩnh Lặng.</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
