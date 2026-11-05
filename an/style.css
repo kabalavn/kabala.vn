@@ -1,0 +1,587 @@
+/* Global Styles */
+:root {
+    --bg-color: #1a1a1d;
+    --text-color: #e2e8f0;
+    --text-muted: #94a3b8;
+    --accent-color: #c5a059;
+    /* Antiqued Gold */
+    --accent-glow: rgba(197, 160, 89, 0.4);
+    --dark-purple: #2d2a32;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Lato', sans-serif;
+    --transition-slow: 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+#atmosphere-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+.logo,
+.chapter-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    position: fixed;
+    top: 0;
+    width: 90%;
+    z-index: 1000;
+    mix-blend-mode: difference;
+}
+
+.logo {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: opacity 0.3s;
+    opacity: 0.7;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.main-title {
+    font-size: 6rem;
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.accent-text {
+    color: var(--accent-color);
+    font-style: italic;
+}
+
+.poetic-subtitle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-top: 2rem;
+    font-style: italic;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.5;
+    animation: pulse 3s infinite;
+}
+
+.scroll-indicator span {
+    font-size: 0.8rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+}
+
+.scroll-indicator .line {
+    width: 1px;
+    height: 60px;
+    background: white;
+}
+
+/* Sections General */
+.section {
+    min-height: 100vh;
+    padding: 6rem 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.chapter-title {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.chapter-intro {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.center-text {
+    text-align: center;
+}
+
+/* Section 1: Roots (Split Layout) */
+.split-layout {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+}
+
+.text-block {
+    flex: 1;
+    max-width: 500px;
+    text-align: right;
+    padding-right: 3rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.concept-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.concept-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    max-width: 450px;
+}
+
+.symbol-circle {
+    font-size: 2rem;
+    min-width: 60px;
+    height: 60px;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+}
+
+.concept-item h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.concept-item p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Section 2: Path (Vertical) */
+.path-section {
+    align-items: center;
+}
+
+.path-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 4rem;
+    min-height: 800px;
+}
+
+.path-line-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.drawing-line {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 1;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: stroke-dashoffset 2s ease;
+}
+
+.drawing-line.drawn {
+    stroke-dashoffset: 0;
+}
+
+.step-node {
+    position: absolute;
+    width: 300px;
+    padding: 2rem;
+    /* Glass effect but darker */
+    background: rgba(45, 42, 50, 0.4);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 2;
+}
+
+.step-number {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    opacity: 0.1;
+    position: absolute;
+    top: -20px;
+    right: 20px;
+}
+
+/* Positioning steps along the curve roughly */
+.step-1 {
+    top: 5%;
+    right: 10%;
+    text-align: left;
+}
+
+.step-2 {
+    top: 40%;
+    left: 10%;
+    text-align: right;
+}
+
+.step-3 {
+    top: 75%;
+    right: 10%;
+    text-align: left;
+}
+
+/* Section 3: Mandala */
+.mandala-section {
+    align-items: center;
+    overflow: hidden;
+}
+
+.mandala-container {
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+.glowing-orb {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+    box-shadow: 0 0 60px var(--accent-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    cursor: default;
+}
+
+.orb-text {
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-style: italic;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.orbit-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: spin 60s linear infinite;
+}
+
+.satellite-orb {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    background: var(--bg-color);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.satellite-orb:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--accent-glow);
+    transform: scale(1.2);
+}
+
+/* Positioning satellites */
+.sat-hieu {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sat-dao {
+    top: 35%;
+    right: 0;
+}
+
+.sat-duc {
+    bottom: 10%;
+    right: 15%;
+}
+
+.sat-phuc {
+    bottom: 10%;
+    left: 15%;
+}
+
+.sat-tai {
+    top: 35%;
+    left: 0;
+}
+
+/* Rotate satellites counter to ring so text stays upright? 
+   Actually, spinning ring implies text spins. Let's make it static but floating for simplicity in CSS 
+   or just let it spin slowly for "orbit" effect. */
+
+.satellite-orb span {
+    animation: counter-spin 60s linear infinite;
+    /* Keeps text upright */
+}
+
+.mandala-desc {
+    margin-top: 3rem;
+    text-align: center;
+    height: 100px;
+}
+
+.mandala-desc h3 {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin: 0;
+}
+
+/* Section 4: Meditation */
+.stillness-section {
+    text-align: center;
+}
+
+.meditation-flow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin: 4rem 0;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--text-muted);
+}
+
+.flow-step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.final-quote {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-style: italic;
+    color: #fff;
+    margin-top: 5rem;
+    opacity: 0.8;
+}
+
+footer {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.small-text {
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+/* Animations */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateY(10px);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes counter-spin {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.fade-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition-slow);
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: var(--transition-slow);
+}
+
+.fade-in-side {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: var(--transition-slow);
+}
+
+.left-align[class*="fade-in-side"] {
+    transform: translateX(-20px);
+}
+
+.visible {
+    opacity: 1;
+    transform: translate(0);
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3.5rem;
+    }
+
+    .split-layout {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .text-block {
+        text-align: left;
+        padding: 0 0 2rem 0;
+        border: none;
+    }
+
+    .path-container {
+        max-width: 100%;
+        min-height: auto;
+        padding-bottom: 2rem;
+    }
+
+    .step-node {
+        position: relative;
+        width: auto;
+        margin-bottom: 3rem;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        text-align: left !important;
+        background: rgba(45, 42, 50, 0.6);
+    }
+
+    .drawing-line {
+        display: none;
+    }
+
+    .mandala-section {
+        min-height: 80vh;
+        /* Allow it to shrink a bit */
+    }
+
+    .mandala-container {
+        transform: scale(0.65);
+        margin-top: 2rem;
+    }
+
+    /* Make sure satellites are clickable on mobile */
+    .satellite-orb {
+        width: 70px;
+        height: 70px;
+        font-size: 1.1rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .section {
+        padding: 4rem 5%;
+    }
+
+    .chapter-intro {
+        font-size: 1rem;
+    }
+}
