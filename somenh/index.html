@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Số Mệnh & Ý Chí | Hành Trình Tỉnh Thức</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+        .gold-text {
+            color: #d4af37;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gradient-bg {
+            background: radial-gradient(circle at top right, #1a1a2e, #0a0a0a);
+        }
+        .equation-box {
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            padding: 2rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        @media (max-width: 768px) {
+            .equation-box {
+                font-size: 1.25rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-md bg-black/40 border-b border-white/5">
+        <div class="text-xl font-bold tracking-widest gold-text">METAPHYSICS</div>
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-light">
+            <a href="#concept" class="hover:text-amber-500 transition">Triết lý</a>
+            <a href="#equation" class="hover:text-amber-500 transition">Công thức</a>
+            <a href="#faq" class="hover:text-amber-500 transition">Giải đáp</a>
+            <a href="#freedom" class="hover:text-amber-500 transition">Tự do</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <svg width="100%" height="100%">
+                <circle cx="10%" cy="20%" r="1" fill="white" />
+                <circle cx="30%" cy="50%" r="1.5" fill="white" />
+                <circle cx="70%" cy="10%" r="1" fill="white" />
+                <circle cx="90%" cy="80%" r="1" fill="white" />
+                <circle cx="50%" cy="90%" r="1" fill="white" />
+            </svg>
+        </div>
+        
+        <div class="reveal active">
+            <h1 class="text-5xl md:text-7xl mb-6 font-bold leading-tight">
+                Số mệnh là <span class="italic text-white/90">Bản đồ</span>,<br>
+                Ý chí là <span class="gold-text italic">Bước chân</span>.
+            </h1>
+            <p class="text-xl md:text-2xl font-light text-gray-400 max-w-2xl mx-auto mb-10">
+                Đừng để những con số định đoạt cuộc đời bạn. Hãy học cách đọc bản đồ để làm chủ hành trình của chính mình.
+            </p>
+            <a href="#concept" class="inline-block px-8 py-4 border border-amber-600/50 text-amber-500 hover:bg-amber-600 hover:text-black transition-all duration-300 rounded-full tracking-widest uppercase text-sm">
+                Khám phá sự thật
+            </a>
+        </div>
+    </section>
+
+    <!-- Concept Section -->
+    <section id="concept" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <h2 class="text-4xl mb-8">Bản đồ không phải là con đường</h2>
+                <p class="text-gray-400 leading-relaxed mb-6">
+                    Hãy tưởng tượng số mệnh của bạn là một tấm bản đồ cổ. Nó hiển thị những dãy núi của thử thách, những dòng sông của cơ hội và những thung lũng của biến cố. 
+                </p>
+                <p class="text-gray-400 leading-relaxed">
+                    Bạn không thể thay đổi địa hình đã được vẽ sẵn, nhưng bạn hoàn toàn có quyền chọn <strong>cách đi</strong>. Bạn sẽ leo qua núi bằng sự kiên trì, hay đứng nhìn nó với nỗi sợ hãi?
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-4 reveal">
+                <div class="glass-card p-8 rounded-2xl text-center">
+                    <i data-lucide="map" class="w-12 h-12 mx-auto mb-4 gold-text"></i>
+                    <h3 class="font-bold mb-2">Số Mệnh</h3>
+                    <p class="text-xs text-gray-500 italic">Cái Tĩnh (Hằng số)</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl text-center mt-12">
+                    <i data-lucide="footprints" class="w-12 h-12 mx-auto mb-4 gold-text"></i>
+                    <h3 class="font-bold mb-2">Ý Chí</h3>
+                    <p class="text-xs text-gray-500 italic">Cái Động (Biến số)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equation Section -->
+    <section id="equation" class="py-24 bg-white/5">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal">
+            <h2 class="text-3xl mb-12 uppercase tracking-widest gold-text font-light">Công thức của Cuộc đời</h2>
+            <div class="equation-box inline-block mb-12 shadow-2xl">
+                Định Mệnh = <span class="opacity-50">Số Mệnh</span> × <span class="gold-text">Ý Chí</span>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="p-6">
+                    <div class="text-3xl font-bold mb-4 opacity-30">X = 0</div>
+                    <p class="text-sm text-gray-400 font-light">Nếu buông xuôi, bạn chỉ là hòn đá lăn theo quán tính. Mọi lời tiên tri sẽ đúng tuyệt đối.</p>
+                </div>
+                <div class="p-6 border-x border-white/10">
+                    <div class="text-3xl font-bold mb-4 gold-text">X > 1</div>
+                    <p class="text-sm text-gray-400 font-light">Khi nỗ lực, bạn khuếch đại cơ hội và giảm thiểu rủi ro trên bản đồ.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-3xl font-bold mb-4 opacity-30">X = ?</div>
+                    <p class="text-sm text-gray-400 font-light">Biến số tự do của con người có thể thay đổi hoàn toàn kết quả của hàm số đời mình.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section: Giải Mã Những Nghi Vấn (Kabala & Đạo An Philosophy) -->
+    <section id="faq" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl mb-4">Giải Mã Những Nghi Vấn</h2>
+            <p class="text-gray-400 font-light italic">Dựa trên hệ thống triết lý Đạo An & Kabala</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="glass-card p-8 rounded-xl reveal">
+                <h3 class="gold-text mb-3 font-bold">1. Tại sao thầy bói lại xem sai?</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Vì họ chỉ đọc được các điểm mốc trên "Bản đồ" (Hằng số) mà không đo lường được "Lực bước" của bạn (Biến số). Khi một người đạt đến trạng thái tỉnh thức, họ thoát khỏi quán tính của thói quen, khiến các dự báo dựa trên thống kê cũ trở nên vô hiệu.</p>
+            </div>
+            <div class="glass-card p-8 rounded-xl reveal">
+                <h3 class="gold-text mb-3 font-bold">2. Tại sao 2 người cùng ngày giờ sinh cuộc đời lại khác nhau?</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Họ có chung một tọa độ xuất phát, nhưng một người chọn đi bộ, một người chọn đi bằng ý chí sắt đá. Cùng gặp một ngọn núi (hạn), người này coi đó là cảnh đẹp để leo, người kia coi đó là ngõ cụt để dừng lại. Định mệnh = Bản đồ x Lựa chọn.</p>
+            </div>
+            <div class="glass-card p-8 rounded-xl reveal">
+                <h3 class="gold-text mb-3 font-bold">3. Xem mệnh để làm gì nếu không thể thay đổi bản đồ?</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Mục tiêu cốt lõi của Đạo An là sự **Chấp nhận tỉnh thức**. Xem mệnh không phải để "cầu cúng" đổi số, mà để biết rõ giới hạn của bản đồ, từ đó tập trung năng lượng vào những gì thực sự có thể chuyển hóa và đạt đến sự bình an nội tại.</p>
+            </div>
+            <div class="glass-card p-8 rounded-xl reveal">
+                <h3 class="gold-text mb-3 font-bold">4. Tại sao người tu tập hoặc làm thiện thiện nguyện lớn xem không chuẩn?</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Trong triết lý Kabala, khi năng lượng cá nhân thay đổi tần số (qua tu tập), bạn thực hiện một "Quantum Leap" (bước nhảy lượng tử) sang một lộ trình mới cao cấp hơn. Bạn đã "vượt ngưỡng" bản đồ cũ để thiết lập một quỹ đạo mới cho chính mình.</p>
+            </div>
+            <div class="glass-card p-8 rounded-xl reveal">
+                <h3 class="gold-text mb-3 font-bold">5. Biết trước vận hạn có giúp tránh được tai họa không?</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Biết trước là để "giảm chấn". Nếu bản đồ ghi có mưa, bạn không thể làm mưa ngừng rơi nhưng bạn có quyền chuẩn bị một chiếc ô kiên cố. Tai họa vẫn đến nhưng tâm thế của người "Đạo An" sẽ không bị tàn phá như người không chuẩn bị.</p>
+            </div>
+            <div class="glass-card p-8 rounded-xl reveal">
+                <h3 class="gold-text mb-3 font-bold">6. Tại sao càng xem mệnh nhiều cuộc đời càng bế tắc?</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Vì khi bạn quá tập trung vào bản đồ mà quên mất đôi chân, bạn vô tình trao quyền làm chủ cuộc đời mình cho "quá khứ" và "dự định". Sự bế tắc đến từ việc tin rằng mình không có quyền năng thay đổi — một quan niệm trái ngược với tinh thần tự do của Đạo An.</p>
+            </div>
+            <div class="glass-card p-8 rounded-xl reveal">
+                <h3 class="gold-text mb-3 font-bold">7. Yếu tố Phong thủy chiếm bao nhiêu phần trăm định mệnh?</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Phong thủy là "điều kiện mặt đường". Đường phẳng giúp đi nhanh, đường gập ghềnh khiến đi chậm. Nhưng tốc độ và đích đến cuối cùng vẫn do "Người cầm lái" quyết định. Phong thủy hỗ trợ, nhưng Ý chí mới là động cơ.</p>
+            </div>
+            <div class="glass-card p-8 rounded-xl reveal">
+                <h3 class="gold-text mb-3 font-bold">8. Làm sao để xem mệnh một cách thông thái nhất?</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Hãy coi xem mệnh là một cuộc khảo sát thực địa. Nhận diện các vùng nguy hiểm để phòng tránh, nhận diện các mỏ khoáng sản để khai thác, và luôn nhớ rằng: Bạn là thực thể duy nhất có quyền đặt chân lên những vùng đất mới chưa có trên bản đồ.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section id="why" class="py-24 px-6 max-w-6xl mx-auto border-t border-white/5">
+        <h2 class="text-4xl text-center mb-20">Ý Nghĩa Thật Sự</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-card p-10 rounded-3xl reveal">
+                <div class="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center mb-6">
+                    <i data-lucide="cloud-rain" class="gold-text w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl mb-4 font-bold">Dự báo "Thời tiết"</h3>
+                <p class="text-gray-400 font-light leading-relaxed">
+                    Biết khi nào bão đến để trú ẩn, khi nào nắng lên để gieo trồng. Xem mệnh không phải để sợ hãi, mà để chuẩn bị tâm thế vững vàng nhất.
+                </p>
+            </div>
+            <div class="glass-card p-10 rounded-3xl reveal" style="transition-delay: 150ms;">
+                <div class="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center mb-6">
+                    <i data-lucide="mountain" class="gold-text w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl mb-4 font-bold">Nhận diện "Địa hình"</h3>
+                <p class="text-gray-400 font-light leading-relaxed">
+                    Biết mình là cá để bơi, là chim để bay. Thấu hiểu sở trường để không lãng phí cuộc đời vào những con đường không thuộc về mình.
+                </p>
+            </div>
+            <div class="glass-card p-10 rounded-3xl reveal" style="transition-delay: 300ms;">
+                <div class="w-12 h-12 bg-amber-500/10 rounded-full flex items-center justify-center mb-6">
+                    <i data-lucide="zap" class="gold-text w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl mb-4 font-bold">Tối ưu "Hành trình"</h3>
+                <p class="text-gray-400 font-light leading-relaxed">
+                    Khi hiểu rõ các giới hạn của bản đồ, bạn sẽ ngừng oán trách thực tại và tập trung năng lượng vào những gì có thể thay đổi.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Freedom Section -->
+    <section id="freedom" class="py-24 px-6 bg-black relative">
+        <div class="max-w-3xl mx-auto text-center reveal">
+            <i data-lucide="sparkles" class="w-16 h-16 mx-auto mb-8 gold-text animate-pulse"></i>
+            <h2 class="text-4xl mb-8">Biến số tự do: Sự Tỉnh Thức</h2>
+            <p class="text-lg text-gray-400 font-light italic leading-relaxed">
+                "Thầy bói không xem được cho người tu tập, người có phúc đức lớn và người không tin."
+            </p>
+            <div class="h-px w-24 bg-amber-600/30 mx-auto my-8"></div>
+            <p class="text-gray-400 leading-relaxed mb-10">
+                Khi bạn thay đổi được nội tại - buông bỏ cái Tôi và lòng tham - bản đồ cũ không còn khớp với bước chân mới của bạn nữa. Ý chí tự do là hạt giống của sự nổi loạn thánh thiêng chống lại mọi sự áp đặt.
+            </p>
+            <a href="https://kabala.vn" target="_blank" class="inline-block bg-amber-600 hover:bg-amber-700 text-black font-bold py-4 px-10 rounded-full transition duration-300 transform hover:scale-105">
+                Bắt đầu hành trình làm chủ
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="py-16 border-t border-white/5 text-center text-gray-500 text-sm">
+        <div class="max-w-4xl mx-auto px-6">
+            <p class="mb-6 uppercase tracking-[0.5em] font-light text-xs">Amor Fati - Hãy yêu lấy định mệnh của mình</p>
+            <p class="text-gray-400 mb-8">
+                Xây dựng bởi <a href="https://kabala.vn" target="_blank" class="gold-text hover:underline">Kabala</a>. 
+                Hệ thống triết lý <a href="https://an.kabala.vn" target="_blank" class="gold-text hover:underline">Đạo An</a>
+            </p>
+            <div class="flex justify-center space-x-8 mb-8 text-gray-500">
+                <a href="https://kabala.vn" class="hover:text-amber-500 transition">Trang chủ</a>
+                <a href="https://an.kabala.vn" class="hover:text-amber-500 transition">Đạo An</a>
+                <a href="#" class="hover:text-amber-500 transition">Triết lý</a>
+            </div>
+            <p class="text-[10px] opacity-50">&copy; 2024 Metaphysics Philosophy. Bản quyền thuộc về Kabala.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons with error handling
+        try {
+            lucide.createIcons();
+        } catch (e) {
+            console.error("Lucide icons failed to load:", e);
+        }
+
+        // Optimized Reveal on scroll
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        setTimeout(() => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (!el.classList.contains('active')) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) { el.classList.add('active'); }
+                }
+            });
+        }, 1500);
+    </script>
+</body>
+</html>
