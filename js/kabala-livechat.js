@@ -28,14 +28,14 @@ window.addEventListener('load', function() {
         <!-- Icon Gemini nằm phía trên -->
         <a href='https://gemini.google.com/gem/8e5ec57c7074' rel='nofollow' target='_blank' id='call-btn-gemini'>
             <div class='item-btn-action'>
-                <img src='https://tuvi.kabala.vn/js/google-gemini-icon.webp' alt='Google Gemini' class='icon-action-img'>
+                <img src='https://kabala.vn/images/google-gemini-icon.webp' alt='Google Gemini' class='icon-action-img'>
             </div>
         </a>
 
         <!-- Icon ChatGPT nằm phía dưới -->
         <a href='https://chatgpt.com/g/g-67e3fd3f62dc81919a1f2551472867a3-hoc-vien-kabala' rel='nofollow' target='_blank' id='call-btn-zalo'>
             <div class='item-btn-action'>
-                <img src='https://kabala.vn/wp-content/uploads/2025/03/chatgptpng.png' alt='ChatGPT Kabala' class='icon-action-img'>
+                <img src='https://kabala.vn/images/chatgptpng.png' alt='ChatGPT Kabala' class='icon-action-img'>
             </div>
         </a>
     `;
