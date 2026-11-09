@@ -5,7 +5,7 @@ var intro = `<div style="text-align:justify;">
 <p><strong>Kabala giúp bạn Thấu Hiểu Chính Mình, nhận ra Hạnh Phúc Chân Thật và sống một cuộc đời đầy ý nghĩa.</strong> Mọi công cụ đều miễn phí, và sự lựa chọn của bạn luôn mạnh hơn số phận.</p>
 <p><a href="https://kabala.vn/gioi-thieu-ve-kabala">Giới thiệu</a> · <a href="https://kabala.vn">Trang chủ</a> · <a href="mailto:lienhe@kabala.vn">lienhe@kabala.vn</a></p>
 <hr/>
-<p><a href="https://kabala.vn/triet-ly-kabala.html">Triết Lý Kabala</a>, <a href="https://an.kabala.vn">Đạo An</a>, <a href="https://thien.dabala.vn">Thiền Định</a>, <a href="https://tuvi.kabala.vn">Tử Vi</a>, <a href="https://battu.kabala.vn">Bát Tự</a>, <a href="https://number.kabala.vn">Thần Số Học</a>, <a href="https://lich.kabala.vn">Lịch Vạn Niên</a>, <a href="https://matrix.kabala.vn/">Ma Trận Định Mệnh</a>, <a href="https://huyensu.kabala.vn">Huyền Sư Kabala</a>, <a href="https://kabala.vn/64-que-kinh-dich.html">64 Quẻ Kinh Dịch</a>, <a href="https://go.kabala.vn/bai">Bộ Bài Kinh Dịch</a>.</p>
+<p><a href="https://kabala.vn/triet-ly-kabala/">Triết Lý Kabala</a>, <a href="https://an.kabala.vn">Đạo An</a>, <a href="https://thien.dabala.vn">Thiền Định</a>, <a href="https://tuvi.kabala.vn">Tử Vi</a>, <a href="https://battu.kabala.vn">Bát Tự</a>, <a href="https://number.kabala.vn">Thần Số Học</a>, <a href="https://lich.kabala.vn">Lịch Vạn Niên</a>, <a href="https://matrix.kabala.vn/">Ma Trận Định Mệnh</a>, <a href="https://huyensu.kabala.vn">Huyền Sư Kabala</a>, <a href="https://kabala.vn/64-que-kinh-dich/">64 Quẻ Kinh Dịch</a>, <a href="https://go.kabala.vn/bai">Bộ Bài Kinh Dịch</a>.</p>
 </div>`;
 
 // ✅ Thông báo bảo mật
