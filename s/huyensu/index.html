@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Huyền Sư AI — Hệ thống luận giải mệnh lý bằng AI</title>
+
+  <meta
+    name="description"
+    content="Huyền Sư AI — hệ thống quản lý hồ sơ và tra cứu 9 bộ môn mệnh lý học, kết hợp dữ liệu tính toán với AI."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      background: #070b12;
+      color: #f1f5f9;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid rgba(148, 163, 184, .10);
+    }
+
+    .header-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      color: #fbbf24;
+
+      background: rgba(245, 158, 11, .10);
+      border: 1px solid rgba(245, 158, 11, .20);
+
+      font-size: 20px;
+
+      box-shadow:
+        0 0 35px rgba(245, 158, 11, .12);
+    }
+
+    .brand-small {
+      color: #fbbf24;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+    }
+
+    .brand-name {
+      margin-top: 1px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .header-button {
+      padding: 10px 18px;
+
+      border-radius: 12px;
+
+      border: 1px solid #334155;
+      background: rgba(15, 23, 42, .8);
+
+      font-size: 14px;
+      font-weight: 700;
+
+      transition: .2s ease;
+    }
+
+    .header-button:hover {
+      border-color: rgba(245, 158, 11, .5);
+      color: #fcd34d;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      border-bottom: 1px solid rgba(148, 163, 184, .10);
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(245, 158, 11, .16),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(99, 102, 241, .10),
+          transparent 30%
+        );
+    }
+
+    .hero-grid {
+      min-height: 650px;
+
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+
+      align-items: center;
+
+      gap: 70px;
+
+      padding: 70px 0 90px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+
+      padding: 6px 12px;
+
+      border-radius: 999px;
+
+      color: #fde68a;
+      background: rgba(245, 158, 11, .10);
+      border: 1px solid rgba(245, 158, 11, .20);
+
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin-top: 22px;
+
+      font-size: clamp(42px, 5.4vw, 50px);
+
+      line-height: 1.02;
+      letter-spacing: -.055em;
+
+      font-weight: 900;
+    }
+
+    .gold {
+      background:
+        linear-gradient(
+          180deg,
+          #fef3c7 0%,
+          #fcd34d 45%,
+          #f59e0b 100%
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 650px;
+
+      margin-top: 26px;
+
+      color: #94a3b8;
+
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      min-height: 50px;
+
+      padding: 0 23px;
+
+      border-radius: 15px;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      transition: .2s ease;
+    }
+
+    .btn-primary {
+      color: #111827;
+
+      background: #fbbf24;
+
+      box-shadow:
+        0 12px 40px rgba(245, 158, 11, .20);
+    }
+
+    .btn-primary:hover {
+      background: #fcd34d;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      color: #cbd5e1;
+
+      background: rgba(15, 23, 42, .75);
+
+      border: 1px solid #334155;
+    }
+
+    .btn-secondary:hover {
+      border-color: #64748b;
+    }
+
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 10px;
+
+      max-width: 600px;
+
+      margin-top: 35px;
+    }
+
+    .stat {
+      padding: 16px;
+
+      border-radius: 15px;
+
+      background: rgba(15, 23, 42, .65);
+
+      border: 1px solid #1e293b;
+    }
+
+    .stat-number {
+      color: #fbbf24;
+
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .stat-label {
+      margin-top: 2px;
+
+      color: #64748b;
+
+      font-size: 11px;
+    }
+
+
+    /* =========================
+       MOCKUP
+    ========================= */
+
+    .dashboard-wrap {
+      position: relative;
+    }
+
+    .dashboard-glow {
+      position: absolute;
+
+      inset: -40px;
+
+      background: rgba(245, 158, 11, .07);
+
+      filter: blur(60px);
+
+      border-radius: 50%;
+    }
+
+    .dashboard {
+      position: relative;
+
+      padding: 25px;
+
+      border-radius: 30px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(30, 41, 59, .85),
+          rgba(9, 14, 24, .95)
+        );
+
+      border: 1px solid rgba(245, 158, 11, .18);
+
+      box-shadow:
+        0 30px 100px rgba(0, 0, 0, .45);
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding-bottom: 18px;
+
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .dashboard-label {
+      color: #64748b;
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .dashboard-title {
+      margin-top: 3px;
+
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .badge {
+      padding: 7px 11px;
+
+      border-radius: 10px;
+
+      color: #fde68a;
+
+      background: rgba(245, 158, 11, .10);
+      border: 1px solid rgba(245, 158, 11, .20);
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .methods-mini {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 10px;
+
+      margin-top: 18px;
+    }
+
+    .method-mini {
+      padding: 14px;
+
+      border-radius: 15px;
+
+      background: rgba(2, 6, 23, .55);
+
+      border: 1px solid #1e293b;
+    }
+
+    .method-mini-inner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .method-number {
+      width: 34px;
+      height: 34px;
+
+      flex: 0 0 34px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 10px;
+
+      color: #c4b5fd;
+
+      background: rgba(99, 102, 241, .10);
+      border: 1px solid rgba(99, 102, 241, .18);
+
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .method-name {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .method-sub {
+      color: #475569;
+
+      font-size: 10px;
+    }
+
+    .ai-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin-top: 12px;
+      padding: 15px;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(245, 158, 11, .10),
+          rgba(99, 102, 241, .10)
+        );
+
+      border: 1px solid rgba(245, 158, 11, .18);
+    }
+
+    .ai-icon {
+      font-size: 22px;
+    }
+
+    .ai-title {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .ai-text {
+      margin-top: 2px;
+
+      color: #64748b;
+
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .features {
+      padding: 80px 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 28px;
+
+      border-radius: 23px;
+
+      background: rgba(15, 23, 42, .65);
+
+      border: 1px solid #1e293b;
+    }
+
+    .feature-icon {
+      width: 43px;
+      height: 43px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      color: #fbbf24;
+
+      background: rgba(245, 158, 11, .10);
+      border: 1px solid rgba(245, 158, 11, .18);
+
+      font-size: 19px;
+    }
+
+    .feature h3 {
+      margin-top: 20px;
+
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .feature p {
+      margin-top: 8px;
+
+      color: #64748b;
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+
+    /* =========================
+       METHODS
+    ========================= */
+
+    .methods-section {
+      padding: 85px 0;
+
+      border-top: 1px solid rgba(148, 163, 184, .10);
+      border-bottom: 1px solid rgba(148, 163, 184, .10);
+
+      background: rgba(2, 6, 23, .35);
+    }
+
+    .section-label {
+      color: #fbbf24;
+
+      font-size: 11px;
+      font-weight: 700;
+
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin-top: 8px;
+
+      font-size: clamp(30px, 4vw, 44px);
+
+      line-height: 1.1;
+      letter-spacing: -.04em;
+
+      font-weight: 900;
+    }
+
+    .section-description {
+      max-width: 650px;
+
+      margin-top: 15px;
+
+      color: #64748b;
+
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 12px;
+
+      margin-top: 35px;
+    }
+
+    .method {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      padding: 16px;
+
+      border-radius: 16px;
+
+      background: #090e18;
+
+      border: 1px solid #1e293b;
+
+      transition: .2s ease;
+    }
+
+    .method:hover {
+      border-color: rgba(245, 158, 11, .25);
+      transform: translateY(-2px);
+    }
+
+    .method-index {
+      width: 31px;
+      height: 31px;
+
+      flex: 0 0 31px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 9px;
+
+      color: #fbbf24;
+
+      background: rgba(245, 158, 11, .08);
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .method span {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+
+    /* =========================
+       PRICING
+    ========================= */
+
+    .pricing {
+      padding: 90px 0;
+    }
+
+    .pricing-header {
+      max-width: 700px;
+
+      margin: auto;
+
+      text-align: center;
+    }
+
+    .pricing-header .section-description {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      gap: 18px;
+
+      max-width: 820px;
+      margin: 45px auto 0;
+    }
+
+    .price-card {
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+
+      padding: 30px;
+
+      border-radius: 26px;
+
+      background: rgba(15, 23, 42, .78);
+
+      border: 1px solid #1e293b;
+    }
+
+    .price-card.featured {
+      border-color: rgba(251, 191, 36, .45);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(245, 158, 11, .09),
+          rgba(15, 23, 42, .90)
+        );
+
+      box-shadow:
+        0 25px 80px rgba(245, 158, 11, .08);
+    }
+
+    .popular {
+      position: absolute;
+
+      top: -12px;
+      left: 25px;
+
+      padding: 5px 11px;
+
+      border-radius: 999px;
+
+      color: #111827;
+      background: #fbbf24;
+
+      font-size: 9px;
+      font-weight: 900;
+
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .plan-name {
+      color: #64748b;
+
+      font-size: 11px;
+      font-weight: 800;
+
+      letter-spacing: .16em;
+    }
+
+    .price {
+      margin-top: 14px;
+
+      font-size: 32px;
+      font-weight: 900;
+
+      letter-spacing: -.04em;
+    }
+
+    .profile-count {
+      margin-top: 5px;
+
+      color: #fbbf24;
+
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .plan-note {
+      margin-top: 4px;
+
+      color: #64748b;
+
+      font-size: 12px;
+    }
+
+    .divider {
+      height: 1px;
+
+      margin: 23px 0;
+
+      background: #1e293b;
+    }
+
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+
+      flex: 1;
+    }
+
+    .check {
+      display: flex;
+      gap: 9px;
+
+      color: #cbd5e1;
+
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .check-icon {
+      color: #6ee7b7;
+
+      font-weight: 900;
+    }
+
+    .plan-button {
+      width: 100%;
+
+      margin-top: 28px;
+    }
+
+
+    /* =========================
+       FINAL CTA
+    ========================= */
+
+    .final-section {
+      padding: 80px 0;
+
+      border-top: 1px solid rgba(148, 163, 184, .10);
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(2, 6, 23, .8),
+          #070b12
+        );
+    }
+
+    .final-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 40px;
+
+      padding: 45px;
+
+      border-radius: 30px;
+
+      background: rgba(15, 23, 42, .65);
+
+      border: 1px solid #1e293b;
+    }
+
+    .free-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 6px 11px;
+
+      border-radius: 999px;
+
+      color: #a7f3d0;
+
+      background: rgba(16, 185, 129, .08);
+
+      border: 1px solid rgba(16, 185, 129, .18);
+
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .final-title {
+      margin-top: 14px;
+
+      font-size: clamp(28px, 4vw, 42px);
+
+      line-height: 1.1;
+      letter-spacing: -.04em;
+
+      font-weight: 900;
+    }
+
+    .final-description {
+      max-width: 620px;
+
+      margin-top: 12px;
+
+      color: #64748b;
+
+      font-size: 14px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding-top: 25px;
+      margin-top: 25px;
+
+      border-top: 1px solid #1e293b;
+
+      color: #475569;
+
+      font-size: 11px;
+    }
+
+
+    .header-inner > div:last-child { flex-wrap: wrap; justify-content: flex-end; }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .dashboard-wrap {
+        max-width: 650px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .method-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .final-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .header-inner {
+        height: 68px;
+      }
+
+      .header-button {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      .hero-grid {
+        padding: 45px 0 65px;
+      }
+
+      h1 {
+        font-size: 43px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .stats {
+        gap: 7px;
+      }
+
+      .stat {
+        padding: 12px;
+      }
+
+      .stat-number {
+        font-size: 22px;
+      }
+
+      .stat-label {
+        font-size: 9px;
+      }
+
+      .dashboard {
+        padding: 17px;
+        border-radius: 22px;
+      }
+
+      .methods-mini {
+        grid-template-columns: 1fr;
+      }
+
+      .features,
+      .methods-section,
+      .pricing,
+      .final-section {
+        padding: 60px 0;
+      }
+
+      .feature-grid,
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .price-card {
+        padding: 25px;
+      }
+
+      .final-box {
+        padding: 28px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header>
+
+    <div class="container header-inner">
+
+      <a href="/" class="brand">
+
+        <div class="brand-icon">
+          ✦
+        </div>
+
+        <div>
+          <div class="brand-small">
+            Kabala
+          </div>
+
+          <div class="brand-name">
+            Huyền Sư AI
+          </div>
+        </div>
+
+      </a>
+
+
+      <div style="display:flex;align-items:center;gap:8px;">
+      <a href="guide.html" class="header-button">
+        Hướng dẫn
+      </a>
+    </div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero">
+
+    <div class="container hero-grid">
+
+      <div>
+
+        <div class="eyebrow">
+          Hệ thống mệnh lý học cá nhân hóa + AI
+        </div>
+
+
+        <h1>
+
+          <span class="gold">
+            9+ phương pháp
+          </span>
+
+          <br>
+
+          nhiều hồ sơ
+          <br class="mobile-break">
+
+          ai cũng xem được!
+
+        </h1>
+
+
+        <p class="hero-description">
+
+          Nhập thông tin một lần, xây dựng hồ sơ bản mệnh và
+          tra cứu nhiều bộ môn huyền học trong cùng một nơi.
+          Huyền Sư AI kết hợp dữ liệu tính toán với AI để bạn
+          có một quy trình luận giải nhất quán hơn.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+          <a
+            href="#pricing"
+            class="btn btn-primary"
+          >
+            Chọn gói sử dụng
+            <span>→</span>
+          </a>
+
+          <a
+            href="#methods"
+            class="btn btn-secondary"
+          >
+            Xem 9 bộ môn
+          </a>
+
+        </div>
+
+
+        <div class="stats">
+
+          <div class="stat">
+            <div class="stat-number">3</div>
+            <div class="stat-label">
+              hồ sơ miễn phí + AI
+            </div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">9</div>
+            <div class="stat-label">
+              phương pháp mệnh lý 
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Dashboard -->
+
+      <div class="dashboard-wrap">
+
+        <div class="dashboard-glow"></div>
+
+        <div class="dashboard">
+
+          <div class="dashboard-header">
+
+            <div>
+
+              <div class="dashboard-label">
+                Bảng điều khiển
+              </div>
+
+              <div class="dashboard-title">
+                Hồ sơ bản mệnh
+              </div>
+
+            </div>
+
+            <div class="badge">
+              9 bộ môn
+            </div>
+
+          </div>
+
+
+          <div class="methods-mini">
+
+            <div class="method-mini">
+              <div class="method-mini-inner">
+                <div class="method-number">01</div>
+                <div>
+                  <div class="method-name">Thần Số Học</div>
+                  <div class="method-sub">Tra cứu & phân tích</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-mini">
+              <div class="method-mini-inner">
+                <div class="method-number">02</div>
+                <div>
+                  <div class="method-name">Tử Vi Đẩu Số</div>
+                  <div class="method-sub">Tra cứu & phân tích</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-mini">
+              <div class="method-mini-inner">
+                <div class="method-number">03</div>
+                <div>
+                  <div class="method-name">Bát Tự Tứ Trụ</div>
+                  <div class="method-sub">Tra cứu & phân tích</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-mini">
+              <div class="method-mini-inner">
+                <div class="method-number">04</div>
+                <div>
+                  <div class="method-name">Matrix Destiny</div>
+                  <div class="method-sub">Tra cứu & phân tích</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-mini">
+              <div class="method-mini-inner">
+                <div class="method-number">05</div>
+                <div>
+                  <div class="method-name">Human Design</div>
+                  <div class="method-sub">Tra cứu & phân tích</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="method-mini">
+              <div class="method-mini-inner">
+                <div class="method-number">06</div>
+                <div>
+                  <div class="method-name">Natal Chart</div>
+                  <div class="method-sub">Tra cứu & phân tích</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="ai-box">
+
+            <div class="ai-icon">
+              ✨
+            </div>
+
+            <div>
+
+              <div class="ai-title">
+                AI luận giải & xuất TXT
+              </div>
+
+              <div class="ai-text">
+                Sao chép dữ liệu và đưa vào ChatGPT, Gemini, Claude hoặc DeepSeek.
+                Xuất và lưu dữ liệu của từng profile thành TXT không giới hạn.
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       FEATURES
+  ========================== -->
+
+  <section class="features">
+
+    <div class="container">
+
+      <div class="feature-grid">
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            ◈
+          </div>
+
+          <h3>
+            Một hồ sơ, nhiều bộ môn
+          </h3>
+
+          <p>
+            Không cần nhập đi nhập lại dữ liệu sinh.
+            Một profile có thể dùng cho nhiều phương pháp.
+          </p>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            ◎
+          </div>
+
+          <h3>
+            Quản lý nhiều profile
+          </h3>
+
+          <p>
+            Từ bản thân, người thân đến khách hàng —
+            lựa chọn số lượng hồ sơ theo nhu cầu.
+          </p>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            ◉
+          </div>
+
+          <h3>
+            Dữ liệu rõ ràng
+          </h3>
+
+          <p>
+            Hồ sơ được tổ chức riêng, thuận tiện lưu trữ,
+            chuyển đổi và sử dụng trong quá trình luận giải.
+          </p>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            ⇩
+          </div>
+
+          <h3>
+            Xuất TXT không giới hạn
+          </h3>
+
+          <p>
+            Xuất dữ liệu profile thành TXT không giới hạn,
+            thuận tiện lưu trữ, đưa vào ChatGPT, NotebookLM và các công cụ AI khác.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       METHODS
+  ========================== -->
+
+  <section id="methods" class="methods-section">
+
+    <div class="container">
+
+      <div class="section-label">
+        Hệ sinh thái
+      </div>
+
+      <h2 class="section-title">
+        9 bộ môn trong một giao diện
+      </h2>
+
+      <p class="section-description">
+        Huyền Sư AI tổ chức các phương pháp tính toán và tra cứu
+        thành một hệ thống thống nhất, giúp bạn dễ chuyển từ
+        dữ liệu gốc sang phần luận giải.
+      </p>
+
+
+      <div class="method-grid">
+
+        <div class="method">
+          <div class="method-index">01</div>
+          <span>Thần Số Học</span>
+        </div>
+
+        <div class="method">
+          <div class="method-index">02</div>
+          <span>Tử Vi Đẩu Số</span>
+        </div>
+
+        <div class="method">
+          <div class="method-index">03</div>
+          <span>Bát Tự Tứ Trụ</span>
+        </div>
+
+        <div class="method">
+          <div class="method-index">04</div>
+          <span>Matrix Destiny</span>
+        </div>
+
+        <div class="method">
+          <div class="method-index">05</div>
+          <span>Human Design</span>
+        </div>
+
+        <div class="method">
+          <div class="method-index">06</div>
+          <span>Natal Chart</span>
+        </div>
+
+        <div class="method">
+          <div class="method-index">07</div>
+          <span>Horoscope</span>
+        </div>
+
+        <div class="method">
+          <div class="method-index">08</div>
+          <span>Phong Thủy</span>
+        </div>
+
+        <div class="method">
+          <div class="method-index">09</div>
+          <span>Quỷ Cốc Toán Mệnh</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       GUIDE CTA
+  ========================== -->
+
+  <section class="features" style="padding-top:30px;padding-bottom:20px;">
+    <div class="container">
+      <div class="final-box" style="padding:30px;">
+        <div>
+          <div class="free-badge">✦ HƯỚNG DẪN SỬ DỤNG</div>
+          <h2 class="final-title" style="font-size:30px;">Từ dữ liệu TXT đến một hệ thống tư duy với AI</h2>
+          <p class="final-description">
+            Xem cách dùng profile Huyền Sư với ChatGPT, NotebookLM và các AI khác;
+            so sánh nhiều người; phân tích hợp tác; và khám phá 100+ câu hỏi ứng dụng.
+          </p>
+        </div>
+        <a href="guide.html" class="btn btn-primary">Cách ứng dụng →</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- =========================
+       PRICING
+  ========================== -->
+
+  <section id="pricing" class="pricing">
+
+    <div class="container">
+
+      <div class="pricing-header">
+
+        <div class="section-label">
+          Bảng giá
+        </div>
+
+        <h2 class="section-title">
+          Chọn số lượng profile bạn cần
+        </h2>
+
+        <p class="section-description">
+          Mỗi profile là một hồ sơ bản mệnh riêng,
+          được quản lý độc lập trong hệ thống.
+        </p>
+
+      </div>
+
+
+      <div class="pricing-grid">
+
+
+        <!-- FREE -->
+
+        <div class="price-card">
+
+          <div class="plan-name">
+            FREE
+          </div>
+
+          <div class="price">
+            Miễn phí
+          </div>
+
+          <div class="profile-count">
+            3 profile
+          </div>
+
+          <div class="plan-note">
+            Dùng thử để trải nghiệm hệ thống
+          </div>
+
+
+          <div class="divider"></div>
+
+
+          <div class="features-list">
+
+            <div class="check">
+              <span class="check-icon">✓</span>
+              <span>3 hồ sơ bản mệnh</span>
+            </div>
+
+            <div class="check">
+              <span class="check-icon">✓</span>
+              <span>Tra cứu nhiều bộ môn</span>
+            </div>
+
+            <div class="check">
+              <span class="check-icon">✓</span>
+              <span>Lưu hồ sơ</span>
+            </div>
+
+            <div class="check">
+              <span class="check-icon">✓</span>
+              <span>Luận giải với AI bên ngoài</span>
+            </div>
+
+
+          </div>
+
+
+          <a
+            href="https://huyensu.kabala.vn"
+            class="btn btn-secondary plan-button"
+          >
+            Bắt đầu miễn phí
+            →
+          </a>
+
+        </div>
+
+
+
+        <!-- PRO -->
+
+        <div class="price-card featured">
+
+          <div class="popular">
+            Phổ biến
+          </div>
+
+          <div class="plan-name">
+            VIP
+          </div>
+
+          <div class="price">
+            599.000đ
+          </div>
+
+          <div class="profile-count">
+            Không giới hạn
+          </div>
+
+          <div class="plan-note">
+            Cho cá nhân & gia đình
+          </div>
+
+
+          <div class="divider"></div>
+
+
+          <div class="features-list">
+
+            <div class="check">
+              <span class="check-icon">✓</span>
+              <span>Không giới hạn hồ sơ bản mệnh VIP</span>
+            </div>
+
+            <div class="check">
+              <span class="check-icon">✓</span>
+              <span>Đầy đủ 9 bộ môn huyền học</span>
+            </div>
+
+            <div class="check">
+              <span class="check-icon">✓</span>
+              <span>Quản lý & chuyển đổi hồ sơ</span>
+            </div>
+
+            <div class="check">
+              <span class="check-icon">✓</span>
+              <span>Phù hợp cho gia đình & quản lý nhiều hồ sơ</span>
+            </div>
+
+            <div class="check">
+              <span class="check-icon">✓</span>
+              <span>Xuất & lưu TXT không giới hạn</span>
+            </div>
+
+          </div>
+
+
+          <a
+            href="https://kabala.vn/cart/?add-to-cart=9926"
+            class="btn btn-primary plan-button"
+            data-plan="VIP - 599.000đ/năm - không giới hạn hồ sơ"
+          >
+            Chọn gói 599K/năm
+            →
+          </a>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       FINAL CTA
+  ========================== -->
+
+  <section id="contact" class="final-section">
+
+    <div class="container">
+
+      <div class="final-box">
+
+        <div>
+
+          <div class="free-badge">
+            ✓ Có thể bắt đầu với FREE
+          </div>
+
+          <h2 class="final-title">
+            Bắt đầu với Huyền Sư AI
+          </h2>
+
+          <p class="final-description">
+            Trải nghiệm trước với 3 hồ sơ miễn phí.
+            Khi cần quản lý thêm hồ sơ, nâng cấp gói trả phí
+            Quản lý Hồ sơ và xuất TXT không giới hạn.
+          </p>
+
+        </div>
+
+
+        <div class="hero-buttons" style="margin-top:0;">
+        <a
+          href="guide.html"
+          class="btn btn-secondary"
+        >
+          Xem hướng dẫn
+          →
+        </a>
+        <a
+          href="https://huyensu.kabala.vn?source=kabala_s"
+          class="btn btn-primary"
+        >
+          Huyền Sư Kabala
+          →
+        </a>
+      </div>
+
+      </div>
+
+
+      <footer>
+
+        <span>
+          © <span id="year"></span> Kabala · Huyền Sư AI
+        </span>
+
+        <span style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+          <a href="guide.html" style="color:#94a3b8;">Hướng dẫn sử dụng</a> | <a href="privacy.html" style="color:#94a3b8;">Chính sách</a>
+          <span>Huyền học mang tính tham khảo và chiêm nghiệm.</span>
+        </span>
+
+      </footer>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    // Current year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    // Pricing button
+    document.querySelectorAll("[data-plan]").forEach(function(button) {
+
+      button.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        const plan = button.getAttribute("data-plan");
+
+        /*
+         * Sau này có thể thay đoạn này bằng:
+         *
+         * 1. Mở QR thanh toán
+         * 2. Chuyển sang Zalo
+         * 3. Mở trang checkout
+         * 4. VietQR / SePay
+         * 5. WooCommerce checkout
+         */
+
+        alert(
+          "Bạn đã chọn: " +
+          plan +
+          "\n\nPhần thanh toán sẽ được kết nối ở bước tiếp theo."
+        );
+
+      });
+
+    });
+
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+
+      link.addEventListener("click", function(e) {
+
+        const targetId =
+          link.getAttribute("href");
+
+        if (
+          targetId &&
+          targetId !== "#" &&
+          document.querySelector(targetId)
+        ) {
+
+          e.preventDefault();
+
+          document.querySelector(targetId).scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Infographic Huyền Học Dưới Góc Nhìn Khoa Học Và Đời Sống</title>
+
+  <!-- Google Font hỗ trợ tiếng Việt -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #140b2b;
+      --card: #21143d;
+      --card-soft: #281a4a;
+      --accent-1: #5de1ff;
+      --accent-2: #ffd166;
+      --accent-3: #9b5cff;
+      --text-main: #ffffff;
+      --text-sub: #d4c9ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0; /* giảm khoảng trắng đầu trang như yêu cầu */
+      padding: 0;
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #2b174f 0, #050310 55%, #02010a 100%);
+      color: var(--text-main);
+    }
+
+    .infographic {
+      max-width: 900px;
+      margin: 12px auto 32px auto;
+      padding: 20px 18px 28px;
+      background: linear-gradient(160deg, #1b0e35 0%, #130a25 45%, #1c0e3a 100%);
+      border-radius: 18px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .info-header {
+      text-align: center;
+      padding: 6px 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-1);
+      margin-bottom: 6px;
+    }
+
+    .info-title {
+      font-size: 24px;
+      line-height: 1.25;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+
+    .info-subtitle {
+      font-size: 13px;
+      color: var(--text-sub);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-top: 18px;
+      padding: 14px 14px 16px;
+      border-radius: 16px;
+      background: radial-gradient(circle at top left, #33215e 0, #180e30 50%, #130927 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      background: radial-gradient(circle at 30% 10%, #ffffff 0, var(--accent-1) 35%, #134a67 100%);
+      color: #05020a;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .section-title span {
+      color: var(--accent-1);
+    }
+
+    .section-body {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .tagline {
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      margin-bottom: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(11, 7, 32, 0.8);
+      color: var(--accent-1);
+      white-space: nowrap;
+    }
+
+    .subgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .card-small {
+      background: var(--card-soft);
+      border-radius: 12px;
+      padding: 9px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .card-small-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+
+    .card-small-text {
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 209, 102, 0.1);
+      color: var(--accent-2);
+      margin-bottom: 6px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-2);
+    }
+
+    .section-danger {
+      background: radial-gradient(circle at top left, #5a1634 0, #200714 45%, #140511 100%);
+      border-color: rgba(255, 102, 133, 0.6);
+    }
+
+    .section-danger .section-icon {
+      background: radial-gradient(circle at 25% 0, #ffffff 0, #ff6b81 30%, #5a1026 100%);
+      color: #1a0509;
+    }
+
+    .section-danger .section-title span {
+      color: #ff9fb8;
+    }
+
+    .danger-text {
+      color: #ffd8e2;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    @media (max-width: 600px) {
+      .infographic {
+        margin: 8px 8px 20px;
+        padding: 16px 12px 22px;
+      }
+
+      .info-title {
+        font-size: 20px;
+      }
+
+      .section {
+        padding: 12px 10px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="infographic">
+    <header class="info-header">
+      <div class="eyebrow">Infographic</div>
+      <h1 class="info-title">
+        Huyền học dưới góc nhìn<br />khoa học và đời sống
+      </h1>
+      <p class="info-subtitle">
+        Huyền học có thể là “tấm gương” giúp ta hiểu mình rõ hơn, nhưng nếu tin tuyệt đối
+        vào dự đoán tương lai, nó sẽ trở thành xiềng xích trói buộc tự do lựa chọn.
+      </p>
+    </header>
+
+    <!-- 1. Huyền học là gì -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-icon">✧</div>
+        <h2 class="section-title"><span>1.</span> Huyền học là gì?</h2>
+      </div>
+      <div class="section-body">
+        <div class="tagline">
+          Huyền học là hệ thống biểu tượng cổ xưa tìm cách nối con người với vũ trụ, thời gian
+          và không gian.
+        </div>
+        <p>
+          Bao gồm các bộ môn như chiêm tinh, thần số học, tarot, Bát Tự, Tử Vi, phong thủy…  
+          Tất cả đều cố gắng giải thích: vì sao thời điểm sinh, con số, phương hướng, không gian
+          lại liên quan đến tính cách và xu hướng cuộc đời.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Không phải phép màu</span>
+          <span class="pill">Không phải bản án số mệnh</span>
+          <span class="pill">Là ngôn ngữ biểu tượng</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Lợi ích khi dùng đúng cách -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-icon">✓</div>
+        <h2 class="section-title">
+          <span>2.</span> Những lợi ích thực tế (khi dùng đúng cách)
+        </h2>
+      </div>
+      <div class="section-body">
+        <div class="subgrid">
+          <div class="card-small">
+            <div class="card-small-title">“Tấm gương tâm lý”</div>
+            <p class="card-small-text">
+              Nhận định trong lá số / con số khiến ta dừng lại, soi chiếu bản thân:
+              mình đang mạnh – yếu ở đâu, có đang tự làm khổ mình vì tham, vì cái tôi?
+            </p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title">Định hướng & trách nhiệm</div>
+            <p class="card-small-text">
+              Khi hiểu xu hướng tính cách, ta chọn môi trường, nghề nghiệp, cách sống
+              phù hợp hơn và học chịu trách nhiệm cho lựa chọn của chính mình – thay
+              vì đổ lỗi cho “số phận”.
+            </p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title">Trấn an & hỗ trợ cảm xúc</div>
+            <p class="card-small-text">
+              Một buổi xem bài, nếu người dẫn dắt có đạo đức, có thể giống một cuộc
+              trò chuyện trị liệu nhẹ: giúp ta bớt hoang mang, có hướng thử mới thay
+              vì bế tắc.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Khoa học nói gì -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-icon">⚗</div>
+        <h2 class="section-title">
+          <span>3.</span> Khoa học nói gì về khả năng dự đoán tương lai?
+        </h2>
+      </div>
+      <div class="section-body">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Kết quả nghiên cứu thường không ủng hộ “dự đoán chính xác”
+        </div>
+        <div class="subgrid">
+          <div class="card-small">
+            <div class="card-small-title">Hiệu ứng Barnum</div>
+            <p class="card-small-text">
+              Năm 1948, Bertram Forer cho mọi người cùng một bản mô tả tính cách chung
+              nhưng ai cũng thấy “đúng 4,26/5 điểm”. Con người dễ thấy mình trong
+              những câu nói chung chung nhưng nghe có vẻ rất riêng.
+            </p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title">Thử nghiệm chiêm tinh</div>
+            <p class="card-small-text">
+              Nghiên cứu đăng trên tạp chí <em>Nature</em> (1985) cho thấy khi kiểm tra
+              mù đôi, khả năng nhà chiêm tinh ghép lá số với hồ sơ tâm lý không cao
+              hơn mức ngẫu nhiên.
+            </p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title">Lời tiên tri tự hoàn thành</div>
+            <p class="card-small-text">
+              Khi ta tin quá mạnh vào một dự đoán, niềm tin đó ảnh hưởng hành vi, rồi
+              chính hành vi kéo ta lại gần kết quả đã được “nói trước” – nhất là các
+              dự đoán tiêu cực.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Tại sao không nên xem vận hạn tương lai cho người khác -->
+    <section class="section section-danger">
+      <div class="section-header">
+        <div class="section-icon">!</div>
+        <h2 class="section-title">
+          <span>4.</span> Vì sao không nên xem vận hạn tương lai cho người khác
+          &amp; không tin 100% vào dự đoán?
+        </h2>
+      </div>
+      <div class="section-body danger-text">
+        <div class="subgrid">
+          <div class="card-small">
+            <div class="card-small-title">“Bản án cuộc đời” in sâu vào tiềm thức</div>
+            <p class="card-small-text">
+              Câu như “năm này đại hạn”, “số hai đời chồng”, “về già cô độc” rất dễ
+              trở thành ám ảnh dài hạn, nhất là với người yếu tâm lý, trẻ em hoặc
+              người đang khủng hoảng.
+            </p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title">Cuộc đời luôn thay đổi</div>
+            <p class="card-small-text">
+              Mỗi lựa chọn, mỗi biến cố, mỗi lần tỉnh thức đều có thể bẻ lái hoàn
+              toàn tương lai. Hệ thống phức tạp như đời người không thể đóng khung
+              trong vài dòng “phán số”.
+            </p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title">Nguy cơ lệ thuộc & mất tự do</div>
+            <p class="card-small-text">
+              Nếu tin tuyệt đối vào lá số, ta dễ bỏ cơ hội tốt, sợ yêu sai người,
+              sợ chọn sai nghề, sợ “trái mệnh”. Dần dần, ta đánh mất khả năng lắng
+              nghe trực giác và lý trí của chính mình.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Học huyền học lành mạnh -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-icon">☯</div>
+        <h2 class="section-title">
+          <span>5.</span> Cách tiếp cận huyền học lành mạnh
+        </h2>
+      </div>
+      <div class="section-body">
+        <div class="subgrid">
+          <div class="card-small">
+            <div class="card-small-title">Xem là biểu tượng, không là bản án</div>
+            <p class="card-small-text">
+              Hỏi: “Thông điệp này gợi gì cho mình? Mình giống chỗ nào, không giống
+              chỗ nào?” thay vì “Có đúng 100% không?”.
+            </p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title">Tập trung vào hiện tại</div>
+            <p class="card-small-text">
+              Dùng huyền học để hiểu mình hôm nay cần điều chỉnh gì, học bài học gì,
+              thay vì cố nhìn trọn cả 10–20 năm tương lai.
+            </p>
+          </div>
+          <div class="card-small">
+            <div class="card-small-title">Giữ quyền quyết định cho chính mình</div>
+            <p class="card-small-text">
+              Huyền học chỉ nên là la bàn gợi hướng. Quyết định sau cùng luôn thuộc
+              về bạn – chứ không thuộc về lá số, con số hay bất kỳ “thầy” nào.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      Huyền học hữu ích khi giúp ta tỉnh thức và sống có trách nhiệm hơn – nhưng sẽ trở nên nguy
+      hiểm nếu ta để nó quyết định thay cho trái tim và hành động của chính mình.<hr>
+	  <p>Xây dựng và phát triển bởi <a href="https://kabala.vn/">Kabala</a></p>
+    </div>
+  </main>
+</body>
+</html>

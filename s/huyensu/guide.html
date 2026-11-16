@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hướng dẫn Huyền Sư Kabala — Dùng TXT với AI</title>
+<meta content="Hướng dẫn sử dụng file TXT từ Huyền Sư Kabala với ChatGPT, NotebookLM và các công cụ AI; 130 câu hỏi ứng dụng cho thấu hiểu, sự nghiệp, tình duyên, hợp tác và phát triển bản thân." name="description"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#070b12;color:#f1f5f9;line-height:1.65}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button{-webkit-tap-highlight-color:transparent}
+.container{width:min(1120px,calc(100% - 32px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(7,11,18,.88);backdrop-filter:blur(18px);border-bottom:1px solid #1e293b}
+.nav{height:70px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900}
+.brand-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#fbbf24;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)}
+.brand small{display:block;color:#fbbf24;font-size:9px;letter-spacing:.18em;text-transform:uppercase}
+.brand strong{display:block;font-size:16px}
+.nav-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn,.tool-btn,.filter-chip,.copy-question{border:1px solid #334155;border-radius:12px;min-height:42px;padding:0 15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0f172a;color:#cbd5e1;font-weight:800;cursor:pointer;transition:.18s ease}
+.btn:hover,.tool-btn:hover,.filter-chip:hover,.copy-question:hover{border-color:#64748b;transform:translateY(-1px)}
+.btn-primary{background:#fbbf24;border-color:#fbbf24;color:#111827;box-shadow:0 12px 35px rgba(245,158,11,.16)}
+.hero{padding:86px 0 58px;background:radial-gradient(circle at 50% 0,rgba(245,158,11,.16),transparent 34%),radial-gradient(circle at 15% 20%,rgba(99,102,241,.09),transparent 28%);border-bottom:1px solid #1e293b}
+.eyebrow,.kicker{display:inline-flex;align-items:center;padding:6px 11px;border-radius:999px;color:#fde68a;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+h1{font-size:clamp(39px,6vw,63px);line-height:1.02;letter-spacing:-.055em;margin-top:18px;max-width:900px}
+.gold{background:linear-gradient(180deg,#fef3c7 0%,#fcd34d 45%,#f59e0b 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:760px;margin-top:20px;color:#94a3b8;font-size:16px}
+.hero-actions{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+.section{padding:68px 0}
+.section + .section{border-top:1px solid rgba(148,163,184,.1)}
+.section-head{max-width:760px}
+.section-label{color:#fbbf24;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+h2{font-size:clamp(28px,4vw,42px);line-height:1.08;letter-spacing:-.04em;margin-top:7px}
+.lead{color:#64748b;font-size:14px;margin-top:12px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.card{background:rgba(15,23,42,.7);border:1px solid #1e293b;border-radius:20px;padding:22px}
+.card .icon{font-size:21px}
+.card h3{font-size:16px;margin-top:10px}
+.card p{color:#7c8da4;font-size:13px;margin-top:7px}
+.step-list{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:28px}
+.step{padding:18px;background:#090e18;border:1px solid #1e293b;border-radius:17px}
+.step b{display:block;color:#fbbf24;font-size:11px}
+.step strong{display:block;margin-top:5px;font-size:13px}
+.step span{display:block;color:#64748b;font-size:11px;margin-top:6px}
+.prompt-box{margin-top:22px;background:#090e18;border:1px dashed #334155;border-radius:18px;padding:18px}
+.random-box{position:relative;overflow:hidden}
+.random-box:before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle,rgba(251,191,36,.08),transparent 45%);animation:drift 8s linear infinite;pointer-events:none}
+.random-label{position:relative;color:#fbbf24;font-size:10px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.random-question{position:relative;margin-top:8px;font-size:18px;line-height:1.55;font-weight:800;color:#e2e8f0;max-width:850px}
+.random-actions{position:relative;display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+@keyframes drift{from{transform:rotate(0deg) scale(1)}to{transform:rotate(360deg) scale(1.05)}}
+.case-study-section{padding-top:45px}
+.case-study{position:relative;overflow:hidden;padding:28px;border-radius:26px;background:linear-gradient(145deg,rgba(30,41,59,.86),rgba(8,13,22,.98));border:1px solid rgba(251,191,36,.28);box-shadow:0 25px 90px rgba(0,0,0,.24)}
+.case-study:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 15%,rgba(255,255,255,.025) 45%,transparent 75%);transform:translateX(-120%);animation:shine 7s ease-in-out infinite;pointer-events:none}
+.case-glow{position:absolute;width:340px;height:340px;right:-120px;top:-120px;background:rgba(245,158,11,.11);filter:blur(65px);border-radius:50%}
+.case-top{position:relative;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.case-badge{display:inline-flex;padding:6px 10px;border-radius:999px;background:#fbbf24;color:#111827;font-size:9px;font-weight:900;letter-spacing:.12em}
+.case-live{font-size:9px;font-weight:900;letter-spacing:.12em;color:#64748b}
+.case-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:26px;margin-top:24px}
+.case-people{display:grid;grid-template-columns:1fr auto 1fr;gap:9px;align-items:center;margin-top:18px}
+.case-person{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid #1e293b;border-radius:14px;background:rgba(2,6,23,.46)}
+.case-person span{font-size:18px}.case-person strong{display:block;font-size:12px}.case-person small{display:block;margin-top:2px;color:#64748b;font-size:10px}.case-arrow{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;color:#fbbf24;background:rgba(251,191,36,.08);font-weight:900}
+.case-flow{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.case-step{padding:15px;border:1px solid #1e293b;border-radius:15px;background:#090e18}.case-step b{color:#fbbf24;font-size:9px;letter-spacing:.1em}.case-step strong{display:block;margin-top:4px;font-size:12px}.case-step span{display:block;margin-top:5px;color:#64748b;font-size:10px;line-height:1.55}
+.case-prompt{position:relative;margin-top:22px;padding:18px;border-radius:18px;background:rgba(245,158,11,.055);border:1px solid rgba(245,158,11,.18)}
+.case-prompt-label{color:#fbbf24;font-size:9px;font-weight:900;letter-spacing:.13em}.case-prompt p{margin-top:8px;color:#cbd5e1;font-size:12px;line-height:1.7}.case-prompt .btn{margin-top:13px}
+.case-note{position:relative;margin-top:14px;color:#94a3b8;font-size:11px}.case-note strong{color:#f8fafc}
+@keyframes shine{0%,55%{transform:translateX(-120%)}75%,100%{transform:translateX(120%)}}
+.case-carousel{position:relative;margin-top:28px}.case-viewport{overflow:hidden;border-radius:27px}.case-track{display:flex;transition:transform .48s cubic-bezier(.22,.61,.36,1);will-change:transform}.case-slide{min-width:100%;padding:0 1px;display:block}.case-slide:not(.active){pointer-events:none}.case-nav{position:absolute;z-index:5;top:46%;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid #334155;background:rgba(7,11,18,.82);backdrop-filter:blur(12px);color:#f8fafc;font-size:29px;line-height:1;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.28);transition:.18s ease}.case-nav:hover{border-color:#fbbf24;color:#fbbf24;transform:scale(1.05)}.case-nav.prev{left:-19px}.case-nav.next{right:-19px}.case-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px}.case-counter{display:flex;align-items:baseline;gap:4px;min-width:54px}.case-counter strong{font-size:17px;color:#fbbf24}.case-counter span{color:#475569;font-size:11px}.case-dots{display:flex;gap:7px;align-items:center}.case-dot{width:7px;height:7px;border:0;padding:0;border-radius:50%;background:#334155;cursor:pointer;transition:.2s ease}.case-dot.active{width:22px;border-radius:999px;background:#fbbf24}.case-hint{color:#475569;font-size:10px}.case-slide .case-study{min-height:560px}.case-slide h3{margin-top:7px;font-size:25px;line-height:1.14;letter-spacing:-.025em}.case-slide .lead{font-size:12px}.case-slide .case-note{padding-bottom:2px}
+.value-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:28px}
+.value-main{display:grid;gap:10px}.value-card{display:flex;gap:13px;padding:19px;border:1px solid #1e293b;border-radius:18px;background:rgba(15,23,42,.62)}.value-card.highlight{border-color:rgba(251,191,36,.24);background:linear-gradient(140deg,rgba(245,158,11,.08),rgba(15,23,42,.64))}.value-icon{flex:0 0 auto;width:36px;height:36px;display:grid;place-items:center;border-radius:11px;color:#fbbf24;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.16)}.value-card h3{font-size:14px}.value-card p{margin-top:5px;color:#718096;font-size:11px;line-height:1.65}
+.vip-card{padding:22px;border-radius:21px;border:1px solid rgba(251,191,36,.3);background:linear-gradient(160deg,rgba(245,158,11,.1),rgba(15,23,42,.8));box-shadow:0 20px 70px rgba(245,158,11,.06)}.vip-badge{display:inline-flex;padding:5px 9px;border-radius:999px;background:#fbbf24;color:#111827;font-size:9px;font-weight:900;letter-spacing:.12em}.vip-card h3{margin-top:13px;font-size:20px;line-height:1.2}.vip-card p{margin-top:8px;color:#7c8da4;font-size:12px}.vip-list{display:grid;gap:10px;margin:18px 0}.vip-list>div{display:grid;grid-template-columns:auto 1fr;column-gap:9px}.vip-list span{color:#6ee7b7;font-weight:900}.vip-list strong{font-size:12px}.vip-list small{grid-column:2;color:#64748b;font-size:10px;line-height:1.5;margin-top:2px}.vip-card .btn{width:100%;margin-top:3px}.value-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.value-bottom>div{padding:14px;border:1px solid #1e293b;border-radius:14px;background:#090e18}.value-bottom strong{display:block;color:#fbbf24;font-size:11px}.value-bottom span{display:block;color:#64748b;font-size:10px;margin-top:3px}
+.question-grid.loading{opacity:.35;filter:blur(1px)}
+.loading-state{display:flex;align-items:center;justify-content:center;gap:10px;padding:26px;color:#64748b;font-size:12px}.spinner{width:18px;height:18px;border:2px solid #334155;border-top-color:#fbbf24;border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+
+.prompt-box code{display:block;color:#cbd5e1;font-size:12px;white-space:pre-wrap;line-height:1.7}
+.copy-all{margin-top:14px}
+.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+.tool-btn{min-height:48px;justify-content:flex-start}
+.tool-btn span{color:#fbbf24}
+.note{padding:16px 18px;border-left:3px solid #fbbf24;background:rgba(245,158,11,.06);border-radius:10px;color:#94a3b8;font-size:13px;margin-top:18px}
+.app-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}
+.app-card{padding:19px;background:rgba(15,23,42,.6);border:1px solid #1e293b;border-radius:17px}
+.app-card strong{display:block;font-size:14px}
+.app-card p{font-size:12px;color:#64748b;margin-top:6px}
+.questions-toolbar{position:sticky;top:70px;z-index:35;background:rgba(7,11,18,.94);backdrop-filter:blur(14px);padding:12px 0;border-bottom:1px solid #1e293b;margin-top:25px}
+.search{width:100%;height:48px;padding:0 15px;background:#090e18;border:1px solid #334155;border-radius:13px;color:#f1f5f9;outline:none}
+.search:focus{border-color:rgba(251,191,36,.65);box-shadow:0 0 0 3px rgba(251,191,36,.08)}
+.filters{display:flex;gap:7px;overflow:auto;padding:10px 0 2px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filter-chip{min-height:34px;padding:0 11px;font-size:11px;white-space:nowrap}
+.filter-chip.active{background:#fbbf24;color:#111827;border-color:#fbbf24}
+.question-summary{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:17px 0 12px;color:#64748b;font-size:12px}
+.question-summary strong{color:#e2e8f0}
+.question-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.question-card{display:flex;flex-direction:column;background:#090e18;border:1px solid #1e293b;border-radius:17px;padding:17px;min-height:220px}
+.q-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.q-number{color:#fbbf24;font-size:10px;font-weight:900;letter-spacing:.1em}
+.q-category{font-size:9px;color:#64748b;padding:4px 7px;border:1px solid #1e293b;border-radius:999px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.question-card h3{font-size:13px;line-height:1.6;margin-top:14px;color:#dbe4ef;flex:1}
+.copy-question{margin-top:15px;width:100%;min-height:38px;padding:0 10px;font-size:11px}
+.hidden{display:none!important}
+.empty{padding:30px;text-align:center;color:#64748b;border:1px dashed #334155;border-radius:17px}
+footer{padding:25px 0 50px;border-top:1px solid #1e293b;color:#475569;font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:900px){
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+  .step-list{grid-template-columns:repeat(2,1fr)}
+  .app-grid{grid-template-columns:repeat(2,1fr)}
+  .question-grid{grid-template-columns:repeat(2,1fr)}
+  .tool-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:620px){
+  .case-grid,.value-layout{grid-template-columns:1fr}
+  .case-study{padding:20px}
+  .case-top{align-items:flex-start;flex-direction:column}
+  .case-flow{grid-template-columns:1fr}
+  .case-people{grid-template-columns:1fr}
+  .case-arrow{transform:rotate(90deg);margin:auto}
+  .value-bottom{grid-template-columns:1fr}
+
+  .container{width:min(100% - 24px,1120px)}
+  .nav{height:auto;min-height:64px;padding:8px 0}
+  .nav-actions .btn{min-height:37px;padding:0 10px;font-size:11px}
+  .brand strong{font-size:14px}
+  .hero{padding:55px 0 42px}
+  h1{font-size:41px}
+  .hero p{font-size:14px}
+  .hero-actions,.nav-actions{gap:7px}
+  .hero-actions .btn{width:100%}
+  .section{padding:50px 0}
+  .grid-3,.question-grid{grid-template-columns:1fr}
+  .tool-grid,.app-grid{grid-template-columns:1fr}
+  .step-list{grid-template-columns:1fr}
+  .questions-toolbar{top:64px}
+  .question-card{min-height:0}
+  .filters{margin-right:-12px;padding-right:12px}
+  .question-summary{align-items:stretch;flex-direction:column}
+  .question-summary .btn{width:100%}
+}
+@media (max-width:600px){.case-nav{top:auto;bottom:76px;width:38px;height:38px;font-size:25px}.case-nav.prev{left:10px}.case-nav.next{right:10px}.case-controls{padding-bottom:2px;gap:12px}.case-hint{display:none}.case-slide .case-study{min-height:0}.case-slide h3{font-size:21px}.case-grid{gap:17px}.case-prompt p{font-size:11px}.case-people{grid-template-columns:1fr}.case-arrow{transform:rotate(90deg);margin:auto}}
+</style>
+</head>
+<body>
+<header>
+<div class="container nav">
+<a class="brand" href="index.html">
+<div class="brand-icon">✦</div>
+<div><small>Kabala</small><strong><a href="https://kabala.vn/s/huyensu">Huyền Sư AI</a></strong></div>
+</a>
+<div class="nav-actions">
+<a class="btn btn-primary" href="https://huyensu.kabala.vn" rel="noopener" target="_blank">Mở hệ thống →</a>
+</div>
+</div>
+</header>
+<main>
+<section class="hero">
+<div class="container">
+<div class="eyebrow">Guide · TXT → AI</div>
+<h1>Dùng dữ liệu Huyền Sư để <span class="gold">suy nghĩ sâu hơn với AI.</span></h1>
+<p>
+      File TXT là nguồn dữ liệu của profile. Bạn có thể đưa một hoặc nhiều file vào ChatGPT,
+      NotebookLM, Gemini, Claude, DeepSeek… rồi đặt câu hỏi, so sánh, tạo nội dung, lập kế hoạch
+      hoặc chuyển dữ liệu thành những định dạng dễ tiếp nhận hơn.
+    </p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#questions">Khám phá thư viện câu hỏi →</a>
+<button class="btn" id="randomQuestionTop" type="button">✦ Câu hỏi ngẫu nhiên</button>
+</div>
+<div class="note">
+      Huyền Sư cung cấp dữ liệu theo các phương pháp huyền học. AI giúp đọc, tổng hợp và đặt câu hỏi tốt hơn;
+      không nên biến diễn giải thành kết luận tuyệt đối về con người, sức khỏe, pháp lý hay tài chính.
+    </div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<div class="section-head">
+<div class="section-label">01 · Quy trình cơ bản</div>
+<h2>Từ profile đến một “bàn làm việc AI”</h2>
+<p class="lead">Cách dùng hiệu quả nhất là coi TXT như một tập dữ liệu để AI tham chiếu, rồi giao cho AI một nhiệm vụ cụ thể.</p>
+</div>
+<div class="step-list">
+<div class="step"><b>01</b><strong>Tạo profile</strong><span>Nhập và quản lý hồ sơ trong Huyền Sư.</span></div>
+<div class="step"><b>02</b><strong>Xuất TXT</strong><span>Lấy dữ liệu cần nghiên cứu từ profile.</span></div>
+<div class="step"><b>03</b><strong>Nạp vào AI</strong><span>Upload TXT vào ChatGPT hoặc công cụ AI phù hợp.</span></div>
+<div class="step"><b>04</b><strong>Đặt câu hỏi</strong><span>Dùng câu hỏi cụ thể, so sánh hoặc yêu cầu tổng hợp.</span></div>
+<div class="step"><b>05</b><strong>Kiểm nghiệm</strong><span>Đối chiếu nhiều góc nhìn và giữ quyền tự quyết.</span></div>
+</div>
+<div class="prompt-box random-box">
+<div class="random-label">CÂU HỎI GỢI Ý</div>
+<div class="random-question" id="randomQuestionPreview">Bấm “Câu hỏi ngẫu nhiên” để lấy một câu hỏi triết học.</div>
+<div class="random-actions">
+<button class="btn btn-primary" id="copyRandom" type="button">✦ Câu hỏi ngẫu nhiên</button>
+<a class="btn" href="#questions">Xem thư viện câu hỏi →</a>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<div class="section-head">
+<div class="section-label">02 · Làm được gì với TXT?</div>
+<h2>Không chỉ “xem mệnh”</h2>
+<p class="lead">Giá trị lớn hơn nằm ở việc dùng dữ liệu như một bộ ngữ cảnh để đặt câu hỏi, so sánh và xây dựng hệ thống tư duy.</p>
+</div>
+<div class="grid-3">
+<div class="card"><div class="icon">✦</div><h3>Tạo infographic trên ChatGPT</h3><p>Yêu cầu AI biến các điểm nổi bật trong profile thành timeline, bản đồ tính cách, ma trận ưu tiên, sơ đồ điểm mạnh–điểm mù hoặc infographic 1 trang.</p></div>
+<div class="card"><div class="icon">◎</div><h3>So sánh nhiều người</h3><p>Đưa nhiều TXT vào cùng một phiên và yêu cầu tìm điểm giống, khác, bổ trợ, xung đột. Hiệu quả nhất khi các profile có dữ liệu tương thích.</p></div>
+<div class="card"><div class="icon">↗</div><h3>Kết hợp làm ăn</h3><p>Dùng profile để khơi gợi câu hỏi về vai trò, phong cách làm việc, giao tiếp, rủi ro phối hợp và nguyên tắc phân quyền.</p></div>
+<div class="card"><div class="icon">♫</div><h3>NotebookLM: Audio</h3><p>Đưa TXT làm nguồn rồi dùng các tính năng tổng hợp/overview bằng âm thanh mà tài khoản NotebookLM của bạn hỗ trợ.</p></div>
+<div class="card"><div class="icon">▣</div><h3>NotebookLM: Video / slide</h3><p>Dùng nguồn TXT để yêu cầu video/slide hoặc nội dung trình bày theo khả năng hiện có của NotebookLM, sau đó chỉnh lại góc nhìn và ngôn ngữ.</p></div>
+<div class="card"><div class="icon">◈</div><h3>Tóm tắt &amp; giải thích</h3><p>Yêu cầu AI biến dữ liệu kỹ thuật thành ngôn ngữ đời thường, bảng tóm tắt, FAQ, checklist hoặc “hướng dẫn sử dụng bản thân”.</p></div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<div class="section-head">
+<div class="section-label">03 · Tư duy ứng dụng</div>
+<h2>16 hướng dùng thực tế</h2>
+<p class="lead">Một profile có thể trở thành đầu vào cho nhiều bài toán. Không cần giới hạn cách dùng vào một kiểu luận giải.</p>
+</div>
+<div class="app-grid">
+<div class="app-card"><strong>Tự hiểu mình</strong><p>Điểm mạnh, điểm mù, nhu cầu, động lực, phản ứng khi áp lực.</p></div>
+<div class="app-card"><strong>Ra quyết định</strong><p>Ma trận lựa chọn, câu hỏi phản biện, kiểm tra thiên kiến.</p></div>
+<div class="app-card"><strong>Sự nghiệp</strong><p>Môi trường phù hợp, vai trò, năng lực, hướng thử nghiệm.</p></div>
+<div class="app-card"><strong>Kinh doanh</strong><p>Vai trò sáng lập, vận hành, đối tác, nguyên tắc phối hợp.</p></div>
+<div class="app-card"><strong>Tình yêu</strong><p>Nhu cầu, ranh giới, xung đột, giao tiếp và kỳ vọng.</p></div>
+<div class="app-card"><strong>Gia đình</strong><p>Vai trò thành viên, khác biệt thế hệ, cách nói chuyện.</p></div>
+<div class="app-card"><strong>Cha mẹ – con cái</strong><p>Khác biệt tính cách và cách giáo dục không gắn nhãn.</p></div>
+<div class="app-card"><strong>So sánh nhóm</strong><p>Tìm người bổ trợ, khoảng trống năng lực, nguy cơ xung đột.</p></div>
+<div class="app-card"><strong>Phỏng vấn bản thân</strong><p>Tạo bộ câu hỏi để tự phản tỉnh và viết nhật ký.</p></div>
+<div class="app-card"><strong>Thiết kế 90 ngày</strong><p>Chuyển insight thành mục tiêu, thí nghiệm và chỉ số theo dõi.</p></div>
+<div class="app-card"><strong>Content</strong><p>Biến insight thành bài viết, video, infographic hoặc podcast.</p></div>
+<div class="app-card"><strong>Học tập</strong><p>Yêu cầu AI giải thích dữ liệu theo nhiều trình độ và góc nhìn.</p></div>
+<div class="app-card"><strong>Case study</strong><p>Dùng nhiều profile làm dữ liệu mẫu để nghiên cứu mô hình.</p></div>
+<div class="app-card"><strong>Coaching</strong><p>Biến hồ sơ thành bộ câu hỏi khai mở thay vì câu trả lời định mệnh.</p></div>
+<div class="app-card"><strong>Manual cá nhân</strong><p>Soạn một trang hướng dẫn cách làm việc, giao tiếp và hỗ trợ một người.</p></div>
+<div class="app-card"><strong>Hồ sơ gia đình</strong><p>Ghép nhiều profile thành bức tranh hệ thống, không chỉ từng cá nhân.</p></div>
+</div>
+</div>
+</section>
+<section class="section case-study-section" id="case-studies">
+<div class="container">
+<div class="section-head">
+<div class="section-label">03 · Case study</div>
+<h2>Huyền Sư trở nên có giá trị khi dữ liệu được đưa vào bài toán thật</h2>
+<p class="lead">Một file TXT không chỉ để “xem luận giải”. Hãy dùng nó như dữ liệu nền để AI phân tích một tình huống cụ thể, so sánh nhiều người và biến insight thành hành động.</p>
+</div>
+<div class="case-carousel" id="caseCarousel">
+<button class="case-nav prev" id="casePrev" type="button" aria-label="Case trước">‹</button>
+<div class="case-viewport">
+<div class="case-track" id="caseTrack">
+
+<article class="case-slide active">
+<div class="case-study">
+<div class="case-glow"></div>
+<div class="case-top"><span class="case-badge">CASE 01 · HỢP TÁC LÀM ĂN</span><span class="case-live">2 PROFILE → 1 BÀI TOÁN</span></div>
+<div class="case-grid">
+<div>
+<div class="section-label">Tình huống</div>
+<h3>Dùng Huyền Sư để chuẩn bị hợp tác kinh doanh</h3>
+<p class="lead">Hai người chuẩn bị mở một dự án chung. Không hỏi đơn giản “có hợp nhau không?”, mà dùng 2 file TXT để thiết kế cách phối hợp.</p>
+<div class="case-people">
+<div class="case-person"><span>👤</span><div><strong>Profile A</strong><small>Người khởi xướng · thiên về ý tưởng</small></div></div>
+<div class="case-arrow">×</div>
+<div class="case-person"><span>👤</span><div><strong>Profile B</strong><small>Người vận hành · thiên về thực thi</small></div></div>
+</div>
+</div>
+<div class="case-flow">
+<div class="case-step"><b>01</b><strong>Đối chiếu</strong><span>Tìm điểm bổ trợ và khác biệt trong cách suy nghĩ, giao tiếp, làm việc.</span></div>
+<div class="case-step"><b>02</b><strong>Thiết kế vai trò</strong><span>Gợi ý việc nào A nên dẫn, việc nào B nên dẫn, việc nào cần cùng quyết.</span></div>
+<div class="case-step"><b>03</b><strong>Nhìn rủi ro</strong><span>Chỉ ra các điểm dễ va chạm và nguyên tắc xử lý trước khi xảy ra.</span></div>
+<div class="case-step"><b>04</b><strong>Thử nghiệm 90 ngày</strong><span>Chuyển insight thành phạm vi thử nghiệm và tiêu chí review.</span></div>
+</div>
+</div>
+<div class="case-prompt"><div class="case-prompt-label">PROMPT MẪU</div><p>Hãy so sánh 2 profile theo 5 trục: điểm mạnh, điểm dễ xung đột, vai trò phù hợp, nguyên tắc phối hợp và rủi ro khi áp lực. Không kết luận định mệnh. Cuối cùng đề xuất một mô hình phân vai và thử nghiệm 90 ngày để hai người kiểm chứng bằng thực tế.</p><button class="btn copy-case" type="button">⧉ Copy prompt</button></div>
+<div class="case-note">Giá trị nằm ở chỗ: dữ liệu Huyền Sư trở thành <strong>ngữ cảnh chung</strong> để mọi người nói chuyện cụ thể hơn — không phải công cụ quyết định thay cho con người.</div>
+</div>
+</article>
+
+<article class="case-slide">
+<div class="case-study">
+<div class="case-glow"></div>
+<div class="case-top"><span class="case-badge">CASE 02 · TUYỂN NGƯỜI</span><span class="case-live">2 PROFILE → PHÂN VAI</span></div>
+<div class="case-grid">
+<div><div class="section-label">Tình huống</div><h3>Hiểu một cộng sự trước khi giao việc quan trọng</h3><p class="lead">Đặt profile của người quản lý và ứng viên/cộng sự cạnh nhau để tìm cách giao tiếp, giao việc và phản hồi phù hợp hơn.</p>
+<div class="case-people"><div class="case-person"><span>🧭</span><div><strong>Người quản lý</strong><small>Cần kết quả · quyết định nhanh</small></div></div><div class="case-arrow">↔</div><div class="case-person"><span>🧩</span><div><strong>Cộng sự</strong><small>Cách làm việc và động lực riêng</small></div></div></div></div>
+<div class="case-flow"><div class="case-step"><b>01</b><strong>Phong cách</strong><span>Nhận diện cách tiếp nhận thông tin, phản hồi và áp lực.</span></div><div class="case-step"><b>02</b><strong>Giao việc</strong><span>Đề xuất cách giao mục tiêu, quyền hạn và deadline.</span></div><div class="case-step"><b>03</b><strong>Phản hồi</strong><span>Gợi ý cách góp ý để giảm phòng thủ và tăng hợp tác.</span></div><div class="case-step"><b>04</b><strong>30 ngày</strong><span>Thiết kế một giai đoạn thử việc có tiêu chí đo được.</span></div></div>
+</div>
+<div class="case-prompt"><div class="case-prompt-label">PROMPT MẪU</div><p>Hãy phân tích 2 profile để đề xuất cách người quản lý nên giao việc, giao tiếp, phản hồi và xử lý xung đột với cộng sự này. Tách rõ điểm dữ liệu, diễn giải và giả thuyết cần kiểm chứng. Cuối cùng tạo một kế hoạch phối hợp 30 ngày.</p><button class="btn copy-case" type="button">⧉ Copy prompt</button></div>
+<div class="case-note">Không dùng hồ sơ để quyết định “người này tốt/xấu”; hãy dùng dữ liệu để <strong>thiết kế cách làm việc phù hợp hơn</strong>.</div>
+</div></article>
+
+<article class="case-slide">
+<div class="case-study">
+<div class="case-glow"></div>
+<div class="case-top"><span class="case-badge">CASE 03 · TÌNH DUYÊN</span><span class="case-live">2 PROFILE → HIỂU NHAU</span></div>
+<div class="case-grid">
+<div><div class="section-label">Tình huống</div><h3>Dùng 2 profile để hiểu một mối quan hệ thay vì “xem hợp – khắc”</h3><p class="lead">Tập trung vào nhu cầu, cách giao tiếp, điểm dễ tổn thương và những khác biệt cần được tôn trọng.</p>
+<div class="case-people"><div class="case-person"><span>💬</span><div><strong>Người A</strong><small>Cách yêu · nhu cầu cảm xúc</small></div></div><div class="case-arrow">♥</div><div class="case-person"><span>💬</span><div><strong>Người B</strong><small>Cách yêu · cách phản ứng</small></div></div></div></div>
+<div class="case-flow"><div class="case-step"><b>01</b><strong>Ngôn ngữ</strong><span>Hai người dễ hiểu sai nhau ở đâu?</span></div><div class="case-step"><b>02</b><strong>Nhu cầu</strong><span>Mỗi người cần gì để cảm thấy được tôn trọng?</span></div><div class="case-step"><b>03</b><strong>Xung đột</strong><span>Điều gì dễ kích hoạt phản ứng phòng vệ?</span></div><div class="case-step"><b>04</b><strong>Thực hành</strong><span>Tạo 5 nguyên tắc giao tiếp cho chính mối quan hệ này.</span></div></div>
+</div>
+<div class="case-prompt"><div class="case-prompt-label">PROMPT MẪU</div><p>Hãy dùng 2 profile để phân tích cách A và B yêu, giao tiếp, phản ứng khi tổn thương và xử lý khác biệt. Không dự đoán tương lai hay kết luận ai đúng. Cuối cùng đề xuất 5 nguyên tắc giao tiếp thực tế mà hai người có thể thử trong 30 ngày.</p><button class="btn copy-case" type="button">⧉ Copy prompt</button></div>
+<div class="case-note">Mục tiêu là <strong>hiểu nhau tốt hơn</strong>, không biến một hệ thống huyền học thành phán quyết cho mối quan hệ.</div>
+</div></article>
+
+<article class="case-slide">
+<div class="case-study">
+<div class="case-glow"></div>
+<div class="case-top"><span class="case-badge">CASE 04 · CHA MẸ & CON</span><span class="case-live">2 PROFILE → NUÔI DẠY</span></div>
+<div class="case-grid">
+<div><div class="section-label">Tình huống</div><h3>Hiểu cách một đứa trẻ học và phản ứng để cha mẹ điều chỉnh cách đồng hành</h3><p class="lead">Dùng profile như một góc tham khảo để đặt câu hỏi đúng hơn về giao tiếp, môi trường học tập và kỳ vọng của người lớn.</p>
+<div class="case-people"><div class="case-person"><span>👨‍👩‍👦</span><div><strong>Cha / mẹ</strong><small>Kỳ vọng · cách giáo dục</small></div></div><div class="case-arrow">↔</div><div class="case-person"><span>🌱</span><div><strong>Con</strong><small>Cách tiếp nhận · nhịp phát triển</small></div></div></div></div>
+<div class="case-flow"><div class="case-step"><b>01</b><strong>Quan sát</strong><span>Điều gì là dữ liệu quan sát được ngoài đời?</span></div><div class="case-step"><b>02</b><strong>Học tập</strong><span>Gợi ý môi trường và cách khuyến khích phù hợp.</span></div><div class="case-step"><b>03</b><strong>Giao tiếp</strong><span>Điều chỉnh ngôn ngữ của người lớn để trẻ dễ tiếp nhận.</span></div><div class="case-step"><b>04</b><strong>Thử nghiệm</strong><span>Thiết kế một tuần thực hành rồi quan sát thay đổi thực tế.</span></div></div>
+</div>
+<div class="case-prompt"><div class="case-prompt-label">PROMPT MẪU</div><p>Hãy so sánh profile của cha/mẹ và con để gợi ý cách giao tiếp, động viên, đặt giới hạn và tạo môi trường học tập phù hợp hơn. Không gắn nhãn trẻ hay coi hồ sơ là chẩn đoán. Hãy đưa ra các giả thuyết có thể kiểm chứng bằng quan sát đời sống.</p><button class="btn copy-case" type="button">⧉ Copy prompt</button></div>
+<div class="case-note">Dữ liệu chỉ là <strong>gợi ý để quan sát tốt hơn</strong>; hành vi, hoàn cảnh và tương tác thực tế vẫn là nguồn kiểm chứng quan trọng nhất.</div>
+</div></article>
+
+<article class="case-slide">
+<div class="case-study">
+<div class="case-glow"></div>
+<div class="case-top"><span class="case-badge">CASE 05 · SỰ NGHIỆP</span><span class="case-live">1 PROFILE → 1 CHIẾN LƯỢC</span></div>
+<div class="case-grid">
+<div><div class="section-label">Tình huống</div><h3>Biến profile thành một bản đồ để suy nghĩ về hướng đi sự nghiệp</h3><p class="lead">Không hỏi “tôi nên làm nghề gì?”, mà dùng hồ sơ để soi điểm mạnh, môi trường phù hợp, rủi ro và các giả thuyết nghề nghiệp.</p>
+<div class="case-people"><div class="case-person"><span>👤</span><div><strong>Profile cá nhân</strong><small>Điểm mạnh · xu hướng · động lực</small></div></div><div class="case-arrow">→</div><div class="case-person"><span>🎯</span><div><strong>Chiến lược</strong><small>Hướng thử nghiệm · tiêu chí lựa chọn</small></div></div></div></div>
+<div class="case-flow"><div class="case-step"><b>01</b><strong>Tài sản</strong><span>Nhận diện năng lực và lợi thế có thể phát triển.</span></div><div class="case-step"><b>02</b><strong>Môi trường</strong><span>Điều kiện làm việc nào có thể giúp phát huy tốt hơn?</span></div><div class="case-step"><b>03</b><strong>Rủi ro</strong><span>Thói quen nào dễ khiến đi lệch hướng hoặc quá tải?</span></div><div class="case-step"><b>04</b><strong>Thử nghiệm</strong><span>Tạo 3 hướng nghề nghiệp và cách kiểm chứng trong 90 ngày.</span></div></div>
+</div>
+<div class="case-prompt"><div class="case-prompt-label">PROMPT MẪU</div><p>Dựa trên profile, hãy giúp tôi xây dựng 3 giả thuyết hướng đi sự nghiệp. Với mỗi hướng, nêu lợi thế, rủi ro, môi trường phù hợp, kỹ năng cần bổ sung và một thử nghiệm thực tế trong 90 ngày. Không khẳng định đây là “định mệnh nghề nghiệp”.</p><button class="btn copy-case" type="button">⧉ Copy prompt</button></div>
+<div class="case-note">Giá trị không nằm ở việc AI “chọn nghề hộ bạn”, mà ở việc tạo ra <strong>nhiều giả thuyết tốt để bạn kiểm chứng ngoài đời</strong>.</div>
+</div></article>
+
+<article class="case-slide">
+<div class="case-study">
+<div class="case-glow"></div>
+<div class="case-top"><span class="case-badge">CASE 06 · NỘI DUNG & THƯƠNG HIỆU</span><span class="case-live">1 PROFILE → CONTENT SYSTEM</span></div>
+<div class="case-grid">
+<div><div class="section-label">Tình huống</div><h3>Dùng profile để xây “giọng nói” và hệ thống nội dung cá nhân</h3><p class="lead">Từ dữ liệu nền, AI có thể giúp biến những đặc điểm nổi bật thành chủ đề, góc nhìn, format và nguyên tắc xây thương hiệu.</p>
+<div class="case-people"><div class="case-person"><span>🧠</span><div><strong>Hồ sơ cá nhân</strong><small>Tính cách · sở thích · thế mạnh</small></div></div><div class="case-arrow">→</div><div class="case-person"><span>📣</span><div><strong>Hệ thống content</strong><small>Chủ đề · format · giọng điệu</small></div></div></div></div>
+<div class="case-flow"><div class="case-step"><b>01</b><strong>Chủ đề</strong><span>Tìm các vùng nội dung có khả năng nói lâu dài.</span></div><div class="case-step"><b>02</b><strong>Góc nhìn</strong><span>Biến thế mạnh thành các quan điểm riêng.</span></div><div class="case-step"><b>03</b><strong>Format</strong><span>Chọn dạng bài, video, infographic hoặc series.</span></div><div class="case-step"><b>04</b><strong>Xuất bản</strong><span>Lập lịch thử nghiệm 30 ngày và đo phản hồi.</span></div></div>
+</div>
+<div class="case-prompt"><div class="case-prompt-label">PROMPT MẪU</div><p>Hãy dùng profile của tôi để đề xuất một hệ thống nội dung cá nhân: 5 trụ cột chủ đề, 10 góc nhìn khác biệt, 5 format phù hợp và 20 ý tưởng bài viết/video. Giữ mọi đề xuất ở dạng giả thuyết để tôi kiểm chứng bằng phản hồi thực tế.</p><button class="btn copy-case" type="button">⧉ Copy prompt</button></div>
+<div class="case-note">Một profile có thể trở thành <strong>nguồn nguyên liệu cho cả một hệ thống nội dung</strong>, thay vì chỉ một bài luận giải.</div>
+</div></article>
+
+</div>
+</div>
+<button class="case-nav next" id="caseNext" type="button" aria-label="Case tiếp theo">›</button>
+<div class="case-controls"><div class="case-counter"><strong id="caseIndex">01</strong><span>/ 06</span></div><div class="case-dots" id="caseDots" aria-label="Chọn case study"></div><div class="case-hint">← → để chuyển case</div></div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<div class="section-head">
+<div class="section-label">04 · Công cụ</div>
+<h2>Đi thẳng đến nơi cần dùng</h2>
+<p class="lead">Có thể dùng Huyền Sư để tạo dữ liệu, sau đó chọn AI phù hợp với mục đích.</p>
+</div>
+<div class="tool-grid">
+<a class="tool-btn" href="https://huyensu.kabala.vn" rel="noopener" target="_blank"><span>✦</span> Huyền Sư AI</a>
+<a class="tool-btn" href="https://chatgpt.com" rel="noopener" target="_blank"><span>◎</span> ChatGPT</a>
+<a class="tool-btn" href="https://notebooklm.google.com" rel="noopener" target="_blank"><span>♫</span> NotebookLM</a>
+<a class="tool-btn" href="https://gemini.google.com" rel="noopener" target="_blank"><span>◇</span> Google Gemini</a>
+<a class="tool-btn" href="https://claude.ai" rel="noopener" target="_blank"><span>◌</span> Claude</a>
+<a class="tool-btn" href="https://chat.deepseek.com" rel="noopener" target="_blank"><span>◈</span> DeepSeek</a>
+<a class="tool-btn" href="https://battu.kabala.vn" rel="noopener" target="_blank"><span>01</span> Bát Tự</a>
+<a class="tool-btn" href="https://tuvi.kabala.vn" rel="noopener" target="_blank"><span>02</span> Tử Vi</a>
+<a class="tool-btn" href="https://matrix-destiny.kabala.vn" rel="noopener" target="_blank"><span>04</span> Matrix Destiny</a>
+<a class="tool-btn" href="https://phongthuy.kabala.vn" rel="noopener" target="_blank"><span>08</span> Phong Thủy</a>
+<a class="tool-btn" href="https://tarot.dabala.vn" rel="noopener" target="_blank"><span>✧</span> Tarot</a>
+</div>
+</div>
+</section>
+<section class="section" id="questions">
+<div class="container">
+<div class="section-head">
+<div class="section-label">05 · Thư viện câu hỏi</div>
+<h2>130 câu hỏi — bắt đầu bằng 20 câu ngẫu nhiên</h2>
+<p class="lead">Mặc định hiển thị 20 câu hỏi ngẫu nhiên để bạn bắt đầu nhanh. Khi tìm kiếm hoặc chọn chủ đề, toàn bộ câu hỏi phù hợp sẽ hiện ra.</p>
+</div>
+<div class="questions-toolbar">
+<input autocomplete="off" class="search" id="search" placeholder="Tìm câu hỏi: nghề nghiệp, tình yêu, đối tác, chữa lành..." type="search"/>
+<div class="filters">
+<button class="filter-chip active" data-filter="Tất cả" type="button">Tất cả</button>
+<button class="filter-chip" data-filter="Triết học &amp; ý nghĩa" type="button">Triết học &amp; ý nghĩa</button><button class="filter-chip" data-filter="Thấu hiểu bản thân" type="button">Thấu hiểu bản thân</button><button class="filter-chip" data-filter="Chữa lành &amp; cảm xúc" type="button">Chữa lành &amp; cảm xúc</button><button class="filter-chip" data-filter="Sự nghiệp &amp; hướng đi" type="button">Sự nghiệp &amp; hướng đi</button><button class="filter-chip" data-filter="Kinh doanh &amp; tiền bạc" type="button">Kinh doanh &amp; tiền bạc</button><button class="filter-chip" data-filter="Tình yêu &amp; tình duyên" type="button">Tình yêu &amp; tình duyên</button><button class="filter-chip" data-filter="Gia đình &amp; các thế hệ" type="button">Gia đình &amp; các thế hệ</button><button class="filter-chip" data-filter="So sánh &amp; tương tác" type="button">So sánh &amp; tương tác</button><button class="filter-chip" data-filter="Kết hợp làm ăn" type="button">Kết hợp làm ăn</button><button class="filter-chip" data-filter="Ra quyết định &amp; thời điểm" type="button">Ra quyết định &amp; thời điểm</button><button class="filter-chip" data-filter="Phát triển bản thân" type="button">Phát triển bản thân</button><button class="filter-chip" data-filter="Nuôi dạy &amp; giáo dục" type="button">Nuôi dạy &amp; giáo dục</button><button class="filter-chip" data-filter="Xây dựng nội dung &amp; thương hiệu" type="button">Xây dựng nội dung &amp; thương hiệu</button>
+</div>
+</div>
+<div class="question-summary">
+<span id="viewMode">Đang gợi ý <strong id="count">20</strong> câu hỏi ngẫu nhiên</span>
+<button class="btn" id="copyVisible" type="button">Copy các câu hỏi đang hiện</button>
+</div>
+<div class="question-grid" id="questionGrid">
+<article class="question-card" data-category="Triết học &amp; ý nghĩa" data-search="triết học &amp; ý nghĩa từ toàn bộ hồ sơ, những câu hỏi lớn nào về ý nghĩa cuộc sống mà tôi nên suy ngẫm lúc này?">
+<div class="q-top">
+<span class="q-number">001</span>
+<span class="q-category">Triết học &amp; ý nghĩa</span>
+</div>
+<h3>Từ toàn bộ hồ sơ, những câu hỏi lớn nào về ý nghĩa cuộc sống mà tôi nên suy ngẫm lúc này?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Từ toàn bộ hồ sơ, những câu hỏi lớn nào về ý nghĩa cuộc sống mà tôi nên suy ngẫm lúc này?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Triết học &amp; ý nghĩa" data-search="triết học &amp; ý nghĩa điểm căng thẳng lớn nhất giữa điều tôi muốn và điều tôi đang sống là gì?">
+<div class="q-top">
+<span class="q-number">002</span>
+<span class="q-category">Triết học &amp; ý nghĩa</span>
+</div>
+<h3>Điểm căng thẳng lớn nhất giữa điều tôi muốn và điều tôi đang sống là gì?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điểm căng thẳng lớn nhất giữa điều tôi muốn và điều tôi đang sống là gì?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Triết học &amp; ý nghĩa" data-search="triết học &amp; ý nghĩa tôi đang theo đuổi mục tiêu vì giá trị thật hay vì nhu cầu được công nhận?">
+<div class="q-top">
+<span class="q-number">003</span>
+<span class="q-category">Triết học &amp; ý nghĩa</span>
+</div>
+<h3>Tôi đang theo đuổi mục tiêu vì giá trị thật hay vì nhu cầu được công nhận?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi đang theo đuổi mục tiêu vì giá trị thật hay vì nhu cầu được công nhận?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Triết học &amp; ý nghĩa" data-search="triết học &amp; ý nghĩa những niềm tin nào trong hồ sơ có thể trở thành định kiến nếu tôi quá tin vào chúng?">
+<div class="q-top">
+<span class="q-number">004</span>
+<span class="q-category">Triết học &amp; ý nghĩa</span>
+</div>
+<h3>Những niềm tin nào trong hồ sơ có thể trở thành định kiến nếu tôi quá tin vào chúng?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Những niềm tin nào trong hồ sơ có thể trở thành định kiến nếu tôi quá tin vào chúng?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Triết học &amp; ý nghĩa" data-search="triết học &amp; ý nghĩa tôi có xu hướng tìm ý nghĩa ở đâu khi gặp biến cố?">
+<div class="q-top">
+<span class="q-number">005</span>
+<span class="q-category">Triết học &amp; ý nghĩa</span>
+</div>
+<h3>Tôi có xu hướng tìm ý nghĩa ở đâu khi gặp biến cố?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi có xu hướng tìm ý nghĩa ở đâu khi gặp biến cố?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Triết học &amp; ý nghĩa" data-search="triết học &amp; ý nghĩa bài học triết học nào phù hợp nhất với giai đoạn hiện tại của tôi?">
+<div class="q-top">
+<span class="q-number">006</span>
+<span class="q-category">Triết học &amp; ý nghĩa</span>
+</div>
+<h3>Bài học triết học nào phù hợp nhất với giai đoạn hiện tại của tôi?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Bài học triết học nào phù hợp nhất với giai đoạn hiện tại của tôi?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Triết học &amp; ý nghĩa" data-search="triết học &amp; ý nghĩa nếu bỏ qua tiền bạc và danh tiếng, điều gì vẫn đáng để tôi dành 10 năm xây dựng?">
+<div class="q-top">
+<span class="q-number">007</span>
+<span class="q-category">Triết học &amp; ý nghĩa</span>
+</div>
+<h3>Nếu bỏ qua tiền bạc và danh tiếng, điều gì vẫn đáng để tôi dành 10 năm xây dựng?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Nếu bỏ qua tiền bạc và danh tiếng, điều gì vẫn đáng để tôi dành 10 năm xây dựng?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Triết học &amp; ý nghĩa" data-search="triết học &amp; ý nghĩa điều gì trong tính cách của tôi cần được chấp nhận thay vì cố sửa?">
+<div class="q-top">
+<span class="q-number">008</span>
+<span class="q-category">Triết học &amp; ý nghĩa</span>
+</div>
+<h3>Điều gì trong tính cách của tôi cần được chấp nhận thay vì cố sửa?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điều gì trong tính cách của tôi cần được chấp nhận thay vì cố sửa?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Triết học &amp; ý nghĩa" data-search="triết học &amp; ý nghĩa mâu thuẫn nội tâm nào là động lực, và mâu thuẫn nào đang làm tôi kiệt sức?">
+<div class="q-top">
+<span class="q-number">009</span>
+<span class="q-category">Triết học &amp; ý nghĩa</span>
+</div>
+<h3>Mâu thuẫn nội tâm nào là động lực, và mâu thuẫn nào đang làm tôi kiệt sức?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Mâu thuẫn nội tâm nào là động lực, và mâu thuẫn nào đang làm tôi kiệt sức?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Triết học &amp; ý nghĩa" data-search="triết học &amp; ý nghĩa hãy đặt 5 câu hỏi socrates giúp tôi kiểm tra một quyết định quan trọng.">
+<div class="q-top">
+<span class="q-number">010</span>
+<span class="q-category">Triết học &amp; ý nghĩa</span>
+</div>
+<h3>Hãy đặt 5 câu hỏi Socrates giúp tôi kiểm tra một quyết định quan trọng.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy đặt 5 câu hỏi Socrates giúp tôi kiểm tra một quyết định quan trọng." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Thấu hiểu bản thân" data-search="thấu hiểu bản thân điểm mạnh nổi bật nhất của tôi là gì, và điểm mạnh nào dễ bị dùng quá mức?">
+<div class="q-top">
+<span class="q-number">011</span>
+<span class="q-category">Thấu hiểu bản thân</span>
+</div>
+<h3>Điểm mạnh nổi bật nhất của tôi là gì, và điểm mạnh nào dễ bị dùng quá mức?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điểm mạnh nổi bật nhất của tôi là gì, và điểm mạnh nào dễ bị dùng quá mức?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Thấu hiểu bản thân" data-search="thấu hiểu bản thân điểm mù nào tôi dễ không nhận ra nếu chỉ nhìn bản thân từ bên trong?">
+<div class="q-top">
+<span class="q-number">012</span>
+<span class="q-category">Thấu hiểu bản thân</span>
+</div>
+<h3>Điểm mù nào tôi dễ không nhận ra nếu chỉ nhìn bản thân từ bên trong?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điểm mù nào tôi dễ không nhận ra nếu chỉ nhìn bản thân từ bên trong?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Thấu hiểu bản thân" data-search="thấu hiểu bản thân tôi thường phản ứng thế nào khi bị từ chối, phê bình hoặc mất kiểm soát?">
+<div class="q-top">
+<span class="q-number">013</span>
+<span class="q-category">Thấu hiểu bản thân</span>
+</div>
+<h3>Tôi thường phản ứng thế nào khi bị từ chối, phê bình hoặc mất kiểm soát?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi thường phản ứng thế nào khi bị từ chối, phê bình hoặc mất kiểm soát?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Thấu hiểu bản thân" data-search="thấu hiểu bản thân tôi cần môi trường sống và làm việc như thế nào để phát huy tốt nhất?">
+<div class="q-top">
+<span class="q-number">014</span>
+<span class="q-category">Thấu hiểu bản thân</span>
+</div>
+<h3>Tôi cần môi trường sống và làm việc như thế nào để phát huy tốt nhất?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi cần môi trường sống và làm việc như thế nào để phát huy tốt nhất?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Thấu hiểu bản thân" data-search="thấu hiểu bản thân tôi dễ hiểu sai bản thân ở điểm nào?">
+<div class="q-top">
+<span class="q-number">015</span>
+<span class="q-category">Thấu hiểu bản thân</span>
+</div>
+<h3>Tôi dễ hiểu sai bản thân ở điểm nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi dễ hiểu sai bản thân ở điểm nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Thấu hiểu bản thân" data-search="thấu hiểu bản thân ba nhu cầu tâm lý quan trọng nhất của tôi là gì?">
+<div class="q-top">
+<span class="q-number">016</span>
+<span class="q-category">Thấu hiểu bản thân</span>
+</div>
+<h3>Ba nhu cầu tâm lý quan trọng nhất của tôi là gì?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Ba nhu cầu tâm lý quan trọng nhất của tôi là gì?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Thấu hiểu bản thân" data-search="thấu hiểu bản thân tôi có xu hướng sống theo bản thân hay theo kỳ vọng của người khác?">
+<div class="q-top">
+<span class="q-number">017</span>
+<span class="q-category">Thấu hiểu bản thân</span>
+</div>
+<h3>Tôi có xu hướng sống theo bản thân hay theo kỳ vọng của người khác?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi có xu hướng sống theo bản thân hay theo kỳ vọng của người khác?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Thấu hiểu bản thân" data-search="thấu hiểu bản thân khi căng thẳng, tôi thường dùng chiến lược nào và nó có hiệu quả không?">
+<div class="q-top">
+<span class="q-number">018</span>
+<span class="q-category">Thấu hiểu bản thân</span>
+</div>
+<h3>Khi căng thẳng, tôi thường dùng chiến lược nào và nó có hiệu quả không?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Khi căng thẳng, tôi thường dùng chiến lược nào và nó có hiệu quả không?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Thấu hiểu bản thân" data-search="thấu hiểu bản thân một phiên bản trưởng thành hơn của tôi sẽ giữ lại điều gì và bỏ điều gì?">
+<div class="q-top">
+<span class="q-number">019</span>
+<span class="q-category">Thấu hiểu bản thân</span>
+</div>
+<h3>Một phiên bản trưởng thành hơn của tôi sẽ giữ lại điều gì và bỏ điều gì?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Một phiên bản trưởng thành hơn của tôi sẽ giữ lại điều gì và bỏ điều gì?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Thấu hiểu bản thân" data-search="thấu hiểu bản thân hãy mô tả tôi bằng 5 đặc điểm có ích cho việc tự quan sát, kèm mặt sáng và mặt bóng.">
+<div class="q-top">
+<span class="q-number">020</span>
+<span class="q-category">Thấu hiểu bản thân</span>
+</div>
+<h3>Hãy mô tả tôi bằng 5 đặc điểm có ích cho việc tự quan sát, kèm mặt sáng và mặt bóng.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy mô tả tôi bằng 5 đặc điểm có ích cho việc tự quan sát, kèm mặt sáng và mặt bóng." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Chữa lành &amp; cảm xúc" data-search="chữa lành &amp; cảm xúc những chủ đề cảm xúc nào có thể khiến tôi dễ bị kích hoạt?">
+<div class="q-top">
+<span class="q-number">021</span>
+<span class="q-category">Chữa lành &amp; cảm xúc</span>
+</div>
+<h3>Những chủ đề cảm xúc nào có thể khiến tôi dễ bị kích hoạt?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Những chủ đề cảm xúc nào có thể khiến tôi dễ bị kích hoạt?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Chữa lành &amp; cảm xúc" data-search="chữa lành &amp; cảm xúc khi bị tổn thương, tôi có xu hướng đối diện, né tránh, kiểm soát hay lý trí hóa?">
+<div class="q-top">
+<span class="q-number">022</span>
+<span class="q-category">Chữa lành &amp; cảm xúc</span>
+</div>
+<h3>Khi bị tổn thương, tôi có xu hướng đối diện, né tránh, kiểm soát hay lý trí hóa?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Khi bị tổn thương, tôi có xu hướng đối diện, né tránh, kiểm soát hay lý trí hóa?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Chữa lành &amp; cảm xúc" data-search="chữa lành &amp; cảm xúc tôi nên phân biệt thế nào giữa trực giác và nỗi sợ trong trường hợp của mình?">
+<div class="q-top">
+<span class="q-number">023</span>
+<span class="q-category">Chữa lành &amp; cảm xúc</span>
+</div>
+<h3>Tôi nên phân biệt thế nào giữa trực giác và nỗi sợ trong trường hợp của mình?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên phân biệt thế nào giữa trực giác và nỗi sợ trong trường hợp của mình?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Chữa lành &amp; cảm xúc" data-search="chữa lành &amp; cảm xúc những nhu cầu nào tôi dễ bỏ quên khi chăm sóc người khác?">
+<div class="q-top">
+<span class="q-number">024</span>
+<span class="q-category">Chữa lành &amp; cảm xúc</span>
+</div>
+<h3>Những nhu cầu nào tôi dễ bỏ quên khi chăm sóc người khác?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Những nhu cầu nào tôi dễ bỏ quên khi chăm sóc người khác?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Chữa lành &amp; cảm xúc" data-search="chữa lành &amp; cảm xúc điều gì có thể giúp tôi xây dựng ranh giới lành mạnh hơn?">
+<div class="q-top">
+<span class="q-number">025</span>
+<span class="q-category">Chữa lành &amp; cảm xúc</span>
+</div>
+<h3>Điều gì có thể giúp tôi xây dựng ranh giới lành mạnh hơn?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điều gì có thể giúp tôi xây dựng ranh giới lành mạnh hơn?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Chữa lành &amp; cảm xúc" data-search="chữa lành &amp; cảm xúc tôi cần học cách tha thứ cho bản thân ở điểm nào?">
+<div class="q-top">
+<span class="q-number">026</span>
+<span class="q-category">Chữa lành &amp; cảm xúc</span>
+</div>
+<h3>Tôi cần học cách tha thứ cho bản thân ở điểm nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi cần học cách tha thứ cho bản thân ở điểm nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Chữa lành &amp; cảm xúc" data-search="chữa lành &amp; cảm xúc mẫu phản ứng nào nên được thay thế bằng một phản ứng trưởng thành hơn?">
+<div class="q-top">
+<span class="q-number">027</span>
+<span class="q-category">Chữa lành &amp; cảm xúc</span>
+</div>
+<h3>Mẫu phản ứng nào nên được thay thế bằng một phản ứng trưởng thành hơn?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Mẫu phản ứng nào nên được thay thế bằng một phản ứng trưởng thành hơn?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Chữa lành &amp; cảm xúc" data-search="chữa lành &amp; cảm xúc hãy đề xuất một bài tập viết nhật ký 15 phút để tôi hiểu một cảm xúc đang lặp lại.">
+<div class="q-top">
+<span class="q-number">028</span>
+<span class="q-category">Chữa lành &amp; cảm xúc</span>
+</div>
+<h3>Hãy đề xuất một bài tập viết nhật ký 15 phút để tôi hiểu một cảm xúc đang lặp lại.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy đề xuất một bài tập viết nhật ký 15 phút để tôi hiểu một cảm xúc đang lặp lại." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Chữa lành &amp; cảm xúc" data-search="chữa lành &amp; cảm xúc tôi nên làm gì khi biết một mối quan hệ không còn phù hợp nhưng vẫn khó buông?">
+<div class="q-top">
+<span class="q-number">029</span>
+<span class="q-category">Chữa lành &amp; cảm xúc</span>
+</div>
+<h3>Tôi nên làm gì khi biết một mối quan hệ không còn phù hợp nhưng vẫn khó buông?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên làm gì khi biết một mối quan hệ không còn phù hợp nhưng vẫn khó buông?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Chữa lành &amp; cảm xúc" data-search="chữa lành &amp; cảm xúc hãy xây dựng cho tôi một quy trình tự phản tỉnh 7 ngày dựa trên hồ sơ.">
+<div class="q-top">
+<span class="q-number">030</span>
+<span class="q-category">Chữa lành &amp; cảm xúc</span>
+</div>
+<h3>Hãy xây dựng cho tôi một quy trình tự phản tỉnh 7 ngày dựa trên hồ sơ.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy xây dựng cho tôi một quy trình tự phản tỉnh 7 ngày dựa trên hồ sơ." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Sự nghiệp &amp; hướng đi" data-search="sự nghiệp &amp; hướng đi môi trường công việc nào có khả năng giúp tôi phát huy tốt nhất?">
+<div class="q-top">
+<span class="q-number">031</span>
+<span class="q-category">Sự nghiệp &amp; hướng đi</span>
+</div>
+<h3>Môi trường công việc nào có khả năng giúp tôi phát huy tốt nhất?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Môi trường công việc nào có khả năng giúp tôi phát huy tốt nhất?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Sự nghiệp &amp; hướng đi" data-search="sự nghiệp &amp; hướng đi tôi phù hợp hơn với vai trò chuyên gia, quản lý, sáng tạo, kinh doanh hay xây dựng hệ thống?">
+<div class="q-top">
+<span class="q-number">032</span>
+<span class="q-category">Sự nghiệp &amp; hướng đi</span>
+</div>
+<h3>Tôi phù hợp hơn với vai trò chuyên gia, quản lý, sáng tạo, kinh doanh hay xây dựng hệ thống?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi phù hợp hơn với vai trò chuyên gia, quản lý, sáng tạo, kinh doanh hay xây dựng hệ thống?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Sự nghiệp &amp; hướng đi" data-search="sự nghiệp &amp; hướng đi điểm mạnh nghề nghiệp nào của tôi có thể chuyển thành lợi thế cạnh tranh?">
+<div class="q-top">
+<span class="q-number">033</span>
+<span class="q-category">Sự nghiệp &amp; hướng đi</span>
+</div>
+<h3>Điểm mạnh nghề nghiệp nào của tôi có thể chuyển thành lợi thế cạnh tranh?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điểm mạnh nghề nghiệp nào của tôi có thể chuyển thành lợi thế cạnh tranh?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Sự nghiệp &amp; hướng đi" data-search="sự nghiệp &amp; hướng đi rủi ro sự nghiệp lớn nhất của tôi là thiếu kiên trì, phân tán, quá an toàn hay quá mạo hiểm?">
+<div class="q-top">
+<span class="q-number">034</span>
+<span class="q-category">Sự nghiệp &amp; hướng đi</span>
+</div>
+<h3>Rủi ro sự nghiệp lớn nhất của tôi là thiếu kiên trì, phân tán, quá an toàn hay quá mạo hiểm?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Rủi ro sự nghiệp lớn nhất của tôi là thiếu kiên trì, phân tán, quá an toàn hay quá mạo hiểm?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Sự nghiệp &amp; hướng đi" data-search="sự nghiệp &amp; hướng đi tôi nên ưu tiên thu nhập, quyền tự chủ, ảnh hưởng hay ý nghĩa ở giai đoạn hiện tại?">
+<div class="q-top">
+<span class="q-number">035</span>
+<span class="q-category">Sự nghiệp &amp; hướng đi</span>
+</div>
+<h3>Tôi nên ưu tiên thu nhập, quyền tự chủ, ảnh hưởng hay ý nghĩa ở giai đoạn hiện tại?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên ưu tiên thu nhập, quyền tự chủ, ảnh hưởng hay ý nghĩa ở giai đoạn hiện tại?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Sự nghiệp &amp; hướng đi" data-search="sự nghiệp &amp; hướng đi ba hướng nghề nghiệp nào đáng thử nghiệm và vì sao?">
+<div class="q-top">
+<span class="q-number">036</span>
+<span class="q-category">Sự nghiệp &amp; hướng đi</span>
+</div>
+<h3>Ba hướng nghề nghiệp nào đáng thử nghiệm và vì sao?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Ba hướng nghề nghiệp nào đáng thử nghiệm và vì sao?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Sự nghiệp &amp; hướng đi" data-search="sự nghiệp &amp; hướng đi tôi có xu hướng làm tốt nhất khi làm một mình hay phối hợp với người khác?">
+<div class="q-top">
+<span class="q-number">037</span>
+<span class="q-category">Sự nghiệp &amp; hướng đi</span>
+</div>
+<h3>Tôi có xu hướng làm tốt nhất khi làm một mình hay phối hợp với người khác?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi có xu hướng làm tốt nhất khi làm một mình hay phối hợp với người khác?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Sự nghiệp &amp; hướng đi" data-search="sự nghiệp &amp; hướng đi hãy giúp tôi xây dựng tiêu chí chọn một dự án mới phù hợp với hồ sơ.">
+<div class="q-top">
+<span class="q-number">038</span>
+<span class="q-category">Sự nghiệp &amp; hướng đi</span>
+</div>
+<h3>Hãy giúp tôi xây dựng tiêu chí chọn một dự án mới phù hợp với hồ sơ.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy giúp tôi xây dựng tiêu chí chọn một dự án mới phù hợp với hồ sơ." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Sự nghiệp &amp; hướng đi" data-search="sự nghiệp &amp; hướng đi khi nào tôi nên dừng một hướng đi để chuyển sang hướng khác?">
+<div class="q-top">
+<span class="q-number">039</span>
+<span class="q-category">Sự nghiệp &amp; hướng đi</span>
+</div>
+<h3>Khi nào tôi nên dừng một hướng đi để chuyển sang hướng khác?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Khi nào tôi nên dừng một hướng đi để chuyển sang hướng khác?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Sự nghiệp &amp; hướng đi" data-search="sự nghiệp &amp; hướng đi hãy chuyển những điểm mạnh trong hồ sơ thành một bản mô tả năng lực nghề nghiệp đời thường.">
+<div class="q-top">
+<span class="q-number">040</span>
+<span class="q-category">Sự nghiệp &amp; hướng đi</span>
+</div>
+<h3>Hãy chuyển những điểm mạnh trong hồ sơ thành một bản mô tả năng lực nghề nghiệp đời thường.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy chuyển những điểm mạnh trong hồ sơ thành một bản mô tả năng lực nghề nghiệp đời thường." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kinh doanh &amp; tiền bạc" data-search="kinh doanh &amp; tiền bạc phong cách ra quyết định tài chính của tôi có xu hướng như thế nào?">
+<div class="q-top">
+<span class="q-number">041</span>
+<span class="q-category">Kinh doanh &amp; tiền bạc</span>
+</div>
+<h3>Phong cách ra quyết định tài chính của tôi có xu hướng như thế nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Phong cách ra quyết định tài chính của tôi có xu hướng như thế nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kinh doanh &amp; tiền bạc" data-search="kinh doanh &amp; tiền bạc tôi nên chú ý rủi ro nào khi bắt đầu một dự án kinh doanh mới?">
+<div class="q-top">
+<span class="q-number">042</span>
+<span class="q-category">Kinh doanh &amp; tiền bạc</span>
+</div>
+<h3>Tôi nên chú ý rủi ro nào khi bắt đầu một dự án kinh doanh mới?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên chú ý rủi ro nào khi bắt đầu một dự án kinh doanh mới?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kinh doanh &amp; tiền bạc" data-search="kinh doanh &amp; tiền bạc tôi phù hợp hơn với mô hình xây sản phẩm, dịch vụ, thương hiệu hay cộng đồng?">
+<div class="q-top">
+<span class="q-number">043</span>
+<span class="q-category">Kinh doanh &amp; tiền bạc</span>
+</div>
+<h3>Tôi phù hợp hơn với mô hình xây sản phẩm, dịch vụ, thương hiệu hay cộng đồng?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi phù hợp hơn với mô hình xây sản phẩm, dịch vụ, thương hiệu hay cộng đồng?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kinh doanh &amp; tiền bạc" data-search="kinh doanh &amp; tiền bạc điểm nào trong tính cách có thể giúp tôi kiếm tiền tốt hơn?">
+<div class="q-top">
+<span class="q-number">044</span>
+<span class="q-category">Kinh doanh &amp; tiền bạc</span>
+</div>
+<h3>Điểm nào trong tính cách có thể giúp tôi kiếm tiền tốt hơn?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điểm nào trong tính cách có thể giúp tôi kiếm tiền tốt hơn?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kinh doanh &amp; tiền bạc" data-search="kinh doanh &amp; tiền bạc điểm nào có thể khiến tôi mất tiền nếu thiếu kỷ luật?">
+<div class="q-top">
+<span class="q-number">045</span>
+<span class="q-category">Kinh doanh &amp; tiền bạc</span>
+</div>
+<h3>Điểm nào có thể khiến tôi mất tiền nếu thiếu kỷ luật?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điểm nào có thể khiến tôi mất tiền nếu thiếu kỷ luật?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kinh doanh &amp; tiền bạc" data-search="kinh doanh &amp; tiền bạc tôi nên phân biệt cơ hội thật và sự hưng phấn nhất thời bằng những câu hỏi nào?">
+<div class="q-top">
+<span class="q-number">046</span>
+<span class="q-category">Kinh doanh &amp; tiền bạc</span>
+</div>
+<h3>Tôi nên phân biệt cơ hội thật và sự hưng phấn nhất thời bằng những câu hỏi nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên phân biệt cơ hội thật và sự hưng phấn nhất thời bằng những câu hỏi nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kinh doanh &amp; tiền bạc" data-search="kinh doanh &amp; tiền bạc hãy đề xuất một khung đánh giá đối tác kinh doanh dựa trên nhiều profile.">
+<div class="q-top">
+<span class="q-number">047</span>
+<span class="q-category">Kinh doanh &amp; tiền bạc</span>
+</div>
+<h3>Hãy đề xuất một khung đánh giá đối tác kinh doanh dựa trên nhiều profile.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy đề xuất một khung đánh giá đối tác kinh doanh dựa trên nhiều profile." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kinh doanh &amp; tiền bạc" data-search="kinh doanh &amp; tiền bạc tôi nên kiểm chứng một ý tưởng kinh doanh theo thứ tự nào?">
+<div class="q-top">
+<span class="q-number">048</span>
+<span class="q-category">Kinh doanh &amp; tiền bạc</span>
+</div>
+<h3>Tôi nên kiểm chứng một ý tưởng kinh doanh theo thứ tự nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên kiểm chứng một ý tưởng kinh doanh theo thứ tự nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kinh doanh &amp; tiền bạc" data-search="kinh doanh &amp; tiền bạc hãy lập một ma trận giữa lợi nhuận, rủi ro, quyền tự chủ và mức độ phù hợp với tôi.">
+<div class="q-top">
+<span class="q-number">049</span>
+<span class="q-category">Kinh doanh &amp; tiền bạc</span>
+</div>
+<h3>Hãy lập một ma trận giữa lợi nhuận, rủi ro, quyền tự chủ và mức độ phù hợp với tôi.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy lập một ma trận giữa lợi nhuận, rủi ro, quyền tự chủ và mức độ phù hợp với tôi." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kinh doanh &amp; tiền bạc" data-search="kinh doanh &amp; tiền bạc từ hồ sơ, hãy gợi ý những kiểu tài sản vô hình tôi có thể xây lâu dài.">
+<div class="q-top">
+<span class="q-number">050</span>
+<span class="q-category">Kinh doanh &amp; tiền bạc</span>
+</div>
+<h3>Từ hồ sơ, hãy gợi ý những kiểu tài sản vô hình tôi có thể xây lâu dài.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Từ hồ sơ, hãy gợi ý những kiểu tài sản vô hình tôi có thể xây lâu dài." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Tình yêu &amp; tình duyên" data-search="tình yêu &amp; tình duyên tôi thường tìm kiếm điều gì sâu bên dưới trong tình yêu?">
+<div class="q-top">
+<span class="q-number">051</span>
+<span class="q-category">Tình yêu &amp; tình duyên</span>
+</div>
+<h3>Tôi thường tìm kiếm điều gì sâu bên dưới trong tình yêu?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi thường tìm kiếm điều gì sâu bên dưới trong tình yêu?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Tình yêu &amp; tình duyên" data-search="tình yêu &amp; tình duyên tôi dễ bị thu hút bởi kiểu người nào và vì sao?">
+<div class="q-top">
+<span class="q-number">052</span>
+<span class="q-category">Tình yêu &amp; tình duyên</span>
+</div>
+<h3>Tôi dễ bị thu hút bởi kiểu người nào và vì sao?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi dễ bị thu hút bởi kiểu người nào và vì sao?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Tình yêu &amp; tình duyên" data-search="tình yêu &amp; tình duyên điểm nào của tôi có thể tạo ra hiểu lầm trong quan hệ tình cảm?">
+<div class="q-top">
+<span class="q-number">053</span>
+<span class="q-category">Tình yêu &amp; tình duyên</span>
+</div>
+<h3>Điểm nào của tôi có thể tạo ra hiểu lầm trong quan hệ tình cảm?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điểm nào của tôi có thể tạo ra hiểu lầm trong quan hệ tình cảm?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Tình yêu &amp; tình duyên" data-search="tình yêu &amp; tình duyên tôi cần một người bạn đời có những phẩm chất nào để cân bằng với mình?">
+<div class="q-top">
+<span class="q-number">054</span>
+<span class="q-category">Tình yêu &amp; tình duyên</span>
+</div>
+<h3>Tôi cần một người bạn đời có những phẩm chất nào để cân bằng với mình?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi cần một người bạn đời có những phẩm chất nào để cân bằng với mình?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Tình yêu &amp; tình duyên" data-search="tình yêu &amp; tình duyên tôi nên phân biệt sự hấp dẫn, tương thích và khả năng đồng hành lâu dài như thế nào?">
+<div class="q-top">
+<span class="q-number">055</span>
+<span class="q-category">Tình yêu &amp; tình duyên</span>
+</div>
+<h3>Tôi nên phân biệt sự hấp dẫn, tương thích và khả năng đồng hành lâu dài như thế nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên phân biệt sự hấp dẫn, tương thích và khả năng đồng hành lâu dài như thế nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Tình yêu &amp; tình duyên" data-search="tình yêu &amp; tình duyên trong xung đột tình cảm, tôi có xu hướng tiến lại gần hay rút lui?">
+<div class="q-top">
+<span class="q-number">056</span>
+<span class="q-category">Tình yêu &amp; tình duyên</span>
+</div>
+<h3>Trong xung đột tình cảm, tôi có xu hướng tiến lại gần hay rút lui?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Trong xung đột tình cảm, tôi có xu hướng tiến lại gần hay rút lui?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Tình yêu &amp; tình duyên" data-search="tình yêu &amp; tình duyên tôi cần học điều gì về ranh giới, cam kết và tự do?">
+<div class="q-top">
+<span class="q-number">057</span>
+<span class="q-category">Tình yêu &amp; tình duyên</span>
+</div>
+<h3>Tôi cần học điều gì về ranh giới, cam kết và tự do?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi cần học điều gì về ranh giới, cam kết và tự do?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Tình yêu &amp; tình duyên" data-search="tình yêu &amp; tình duyên có thể dùng hai profile để xem những khác biệt nào nên được đối thoại trước khi kết hôn?">
+<div class="q-top">
+<span class="q-number">058</span>
+<span class="q-category">Tình yêu &amp; tình duyên</span>
+</div>
+<h3>Có thể dùng hai profile để xem những khác biệt nào nên được đối thoại trước khi kết hôn?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Có thể dùng hai profile để xem những khác biệt nào nên được đối thoại trước khi kết hôn?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Tình yêu &amp; tình duyên" data-search="tình yêu &amp; tình duyên hãy gợi ý 10 chủ đề hai người nên nói rõ trước khi quyết định sống chung.">
+<div class="q-top">
+<span class="q-number">059</span>
+<span class="q-category">Tình yêu &amp; tình duyên</span>
+</div>
+<h3>Hãy gợi ý 10 chủ đề hai người nên nói rõ trước khi quyết định sống chung.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy gợi ý 10 chủ đề hai người nên nói rõ trước khi quyết định sống chung." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Tình yêu &amp; tình duyên" data-search="tình yêu &amp; tình duyên nếu một mối quan hệ đang bế tắc, tôi nên đặt 5 câu hỏi nào trước khi quyết định?">
+<div class="q-top">
+<span class="q-number">060</span>
+<span class="q-category">Tình yêu &amp; tình duyên</span>
+</div>
+<h3>Nếu một mối quan hệ đang bế tắc, tôi nên đặt 5 câu hỏi nào trước khi quyết định?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Nếu một mối quan hệ đang bế tắc, tôi nên đặt 5 câu hỏi nào trước khi quyết định?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Gia đình &amp; các thế hệ" data-search="gia đình &amp; các thế hệ vai trò của tôi trong gia đình có xu hướng là người dẫn dắt, kết nối, hỗ trợ hay phản biện?">
+<div class="q-top">
+<span class="q-number">061</span>
+<span class="q-category">Gia đình &amp; các thế hệ</span>
+</div>
+<h3>Vai trò của tôi trong gia đình có xu hướng là người dẫn dắt, kết nối, hỗ trợ hay phản biện?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Vai trò của tôi trong gia đình có xu hướng là người dẫn dắt, kết nối, hỗ trợ hay phản biện?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Gia đình &amp; các thế hệ" data-search="gia đình &amp; các thế hệ tôi nên giao tiếp thế nào với người thân có cách nghĩ rất khác mình?">
+<div class="q-top">
+<span class="q-number">062</span>
+<span class="q-category">Gia đình &amp; các thế hệ</span>
+</div>
+<h3>Tôi nên giao tiếp thế nào với người thân có cách nghĩ rất khác mình?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên giao tiếp thế nào với người thân có cách nghĩ rất khác mình?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Gia đình &amp; các thế hệ" data-search="gia đình &amp; các thế hệ điểm khác biệt nào giữa hai thế hệ dễ tạo xung đột?">
+<div class="q-top">
+<span class="q-number">063</span>
+<span class="q-category">Gia đình &amp; các thế hệ</span>
+</div>
+<h3>Điểm khác biệt nào giữa hai thế hệ dễ tạo xung đột?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điểm khác biệt nào giữa hai thế hệ dễ tạo xung đột?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Gia đình &amp; các thế hệ" data-search="gia đình &amp; các thế hệ nếu dùng nhiều profile, có thể lập bản đồ vai trò của các thành viên trong gia đình như thế nào?">
+<div class="q-top">
+<span class="q-number">064</span>
+<span class="q-category">Gia đình &amp; các thế hệ</span>
+</div>
+<h3>Nếu dùng nhiều profile, có thể lập bản đồ vai trò của các thành viên trong gia đình như thế nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Nếu dùng nhiều profile, có thể lập bản đồ vai trò của các thành viên trong gia đình như thế nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Gia đình &amp; các thế hệ" data-search="gia đình &amp; các thế hệ tôi nên tránh áp kỳ vọng cá nhân lên con cái ở điểm nào?">
+<div class="q-top">
+<span class="q-number">065</span>
+<span class="q-category">Gia đình &amp; các thế hệ</span>
+</div>
+<h3>Tôi nên tránh áp kỳ vọng cá nhân lên con cái ở điểm nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên tránh áp kỳ vọng cá nhân lên con cái ở điểm nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Gia đình &amp; các thế hệ" data-search="gia đình &amp; các thế hệ điều gì có thể giúp tôi xây dựng không khí gia đình an toàn hơn?">
+<div class="q-top">
+<span class="q-number">066</span>
+<span class="q-category">Gia đình &amp; các thế hệ</span>
+</div>
+<h3>Điều gì có thể giúp tôi xây dựng không khí gia đình an toàn hơn?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điều gì có thể giúp tôi xây dựng không khí gia đình an toàn hơn?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Gia đình &amp; các thế hệ" data-search="gia đình &amp; các thế hệ hãy gợi ý cách giải thích một điểm khác biệt tính cách cho người thân bằng ngôn ngữ đời thường.">
+<div class="q-top">
+<span class="q-number">067</span>
+<span class="q-category">Gia đình &amp; các thế hệ</span>
+</div>
+<h3>Hãy gợi ý cách giải thích một điểm khác biệt tính cách cho người thân bằng ngôn ngữ đời thường.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy gợi ý cách giải thích một điểm khác biệt tính cách cho người thân bằng ngôn ngữ đời thường." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Gia đình &amp; các thế hệ" data-search="gia đình &amp; các thế hệ có thể dùng hồ sơ để thiết kế cách phân chia trách nhiệm trong gia đình không?">
+<div class="q-top">
+<span class="q-number">068</span>
+<span class="q-category">Gia đình &amp; các thế hệ</span>
+</div>
+<h3>Có thể dùng hồ sơ để thiết kế cách phân chia trách nhiệm trong gia đình không?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Có thể dùng hồ sơ để thiết kế cách phân chia trách nhiệm trong gia đình không?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Gia đình &amp; các thế hệ" data-search="gia đình &amp; các thế hệ hãy tạo một cuộc trò chuyện gia đình 30 phút về mục tiêu và giá trị chung.">
+<div class="q-top">
+<span class="q-number">069</span>
+<span class="q-category">Gia đình &amp; các thế hệ</span>
+</div>
+<h3>Hãy tạo một cuộc trò chuyện gia đình 30 phút về mục tiêu và giá trị chung.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy tạo một cuộc trò chuyện gia đình 30 phút về mục tiêu và giá trị chung." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Gia đình &amp; các thế hệ" data-search="gia đình &amp; các thế hệ những điều gì nên giữ riêng tư khi dùng dữ liệu hồ sơ của các thành viên?">
+<div class="q-top">
+<span class="q-number">070</span>
+<span class="q-category">Gia đình &amp; các thế hệ</span>
+</div>
+<h3>Những điều gì nên giữ riêng tư khi dùng dữ liệu hồ sơ của các thành viên?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Những điều gì nên giữ riêng tư khi dùng dữ liệu hồ sơ của các thành viên?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="So sánh &amp; tương tác" data-search="so sánh &amp; tương tác so sánh hai profile này: điểm tương đồng lớn nhất là gì?">
+<div class="q-top">
+<span class="q-number">071</span>
+<span class="q-category">So sánh &amp; tương tác</span>
+</div>
+<h3>So sánh hai profile này: điểm tương đồng lớn nhất là gì?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: So sánh hai profile này: điểm tương đồng lớn nhất là gì?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="So sánh &amp; tương tác" data-search="so sánh &amp; tương tác so sánh hai profile: khác biệt nào có thể tạo ra bổ trợ tốt?">
+<div class="q-top">
+<span class="q-number">072</span>
+<span class="q-category">So sánh &amp; tương tác</span>
+</div>
+<h3>So sánh hai profile: khác biệt nào có thể tạo ra bổ trợ tốt?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: So sánh hai profile: khác biệt nào có thể tạo ra bổ trợ tốt?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="So sánh &amp; tương tác" data-search="so sánh &amp; tương tác so sánh hai profile: khác biệt nào có nguy cơ tạo xung đột?">
+<div class="q-top">
+<span class="q-number">073</span>
+<span class="q-category">So sánh &amp; tương tác</span>
+</div>
+<h3>So sánh hai profile: khác biệt nào có nguy cơ tạo xung đột?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: So sánh hai profile: khác biệt nào có nguy cơ tạo xung đột?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="So sánh &amp; tương tác" data-search="so sánh &amp; tương tác hai người này nên phân chia vai trò như thế nào khi làm cùng một việc?">
+<div class="q-top">
+<span class="q-number">074</span>
+<span class="q-category">So sánh &amp; tương tác</span>
+</div>
+<h3>Hai người này nên phân chia vai trò như thế nào khi làm cùng một việc?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hai người này nên phân chia vai trò như thế nào khi làm cùng một việc?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="So sánh &amp; tương tác" data-search="so sánh &amp; tương tác ai có xu hướng phù hợp hơn với việc khởi xướng và ai phù hợp hơn với việc hoàn thiện?">
+<div class="q-top">
+<span class="q-number">075</span>
+<span class="q-category">So sánh &amp; tương tác</span>
+</div>
+<h3>Ai có xu hướng phù hợp hơn với việc khởi xướng và ai phù hợp hơn với việc hoàn thiện?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Ai có xu hướng phù hợp hơn với việc khởi xướng và ai phù hợp hơn với việc hoàn thiện?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="So sánh &amp; tương tác" data-search="so sánh &amp; tương tác hai profile có thể bổ trợ nhau về giao tiếp, kỷ luật và sáng tạo ở đâu?">
+<div class="q-top">
+<span class="q-number">076</span>
+<span class="q-category">So sánh &amp; tương tác</span>
+</div>
+<h3>Hai profile có thể bổ trợ nhau về giao tiếp, kỷ luật và sáng tạo ở đâu?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hai profile có thể bổ trợ nhau về giao tiếp, kỷ luật và sáng tạo ở đâu?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="So sánh &amp; tương tác" data-search="so sánh &amp; tương tác nếu là bạn đời, hai profile cần thống nhất trước về vấn đề gì?">
+<div class="q-top">
+<span class="q-number">077</span>
+<span class="q-category">So sánh &amp; tương tác</span>
+</div>
+<h3>Nếu là bạn đời, hai profile cần thống nhất trước về vấn đề gì?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Nếu là bạn đời, hai profile cần thống nhất trước về vấn đề gì?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="So sánh &amp; tương tác" data-search="so sánh &amp; tương tác nếu là đối tác kinh doanh, điều gì cần có trong thỏa thuận ngay từ đầu?">
+<div class="q-top">
+<span class="q-number">078</span>
+<span class="q-category">So sánh &amp; tương tác</span>
+</div>
+<h3>Nếu là đối tác kinh doanh, điều gì cần có trong thỏa thuận ngay từ đầu?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Nếu là đối tác kinh doanh, điều gì cần có trong thỏa thuận ngay từ đầu?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="So sánh &amp; tương tác" data-search="so sánh &amp; tương tác nếu là cha mẹ và con, người lớn nên điều chỉnh cách giao tiếp ở đâu?">
+<div class="q-top">
+<span class="q-number">079</span>
+<span class="q-category">So sánh &amp; tương tác</span>
+</div>
+<h3>Nếu là cha mẹ và con, người lớn nên điều chỉnh cách giao tiếp ở đâu?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Nếu là cha mẹ và con, người lớn nên điều chỉnh cách giao tiếp ở đâu?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="So sánh &amp; tương tác" data-search="so sánh &amp; tương tác hãy so sánh ba profile cùng lúc và tìm ra cấu trúc nhóm có lợi nhất.">
+<div class="q-top">
+<span class="q-number">080</span>
+<span class="q-category">So sánh &amp; tương tác</span>
+</div>
+<h3>Hãy so sánh ba profile cùng lúc và tìm ra cấu trúc nhóm có lợi nhất.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy so sánh ba profile cùng lúc và tìm ra cấu trúc nhóm có lợi nhất." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kết hợp làm ăn" data-search="kết hợp làm ăn hai profile này có thể hợp tác tốt trong loại hình công việc nào?">
+<div class="q-top">
+<span class="q-number">081</span>
+<span class="q-category">Kết hợp làm ăn</span>
+</div>
+<h3>Hai profile này có thể hợp tác tốt trong loại hình công việc nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hai profile này có thể hợp tác tốt trong loại hình công việc nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kết hợp làm ăn" data-search="kết hợp làm ăn ai nên phụ trách chiến lược, ai phụ trách vận hành và ai phụ trách quan hệ?">
+<div class="q-top">
+<span class="q-number">082</span>
+<span class="q-category">Kết hợp làm ăn</span>
+</div>
+<h3>Ai nên phụ trách chiến lược, ai phụ trách vận hành và ai phụ trách quan hệ?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Ai nên phụ trách chiến lược, ai phụ trách vận hành và ai phụ trách quan hệ?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kết hợp làm ăn" data-search="kết hợp làm ăn rủi ro hợp tác lớn nhất giữa hai người là gì?">
+<div class="q-top">
+<span class="q-number">083</span>
+<span class="q-category">Kết hợp làm ăn</span>
+</div>
+<h3>Rủi ro hợp tác lớn nhất giữa hai người là gì?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Rủi ro hợp tác lớn nhất giữa hai người là gì?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kết hợp làm ăn" data-search="kết hợp làm ăn hai người có thể bù trừ điểm yếu cho nhau ở đâu?">
+<div class="q-top">
+<span class="q-number">084</span>
+<span class="q-category">Kết hợp làm ăn</span>
+</div>
+<h3>Hai người có thể bù trừ điểm yếu cho nhau ở đâu?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hai người có thể bù trừ điểm yếu cho nhau ở đâu?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kết hợp làm ăn" data-search="kết hợp làm ăn hãy thiết kế một mô hình phân quyền để hạn chế xung đột.">
+<div class="q-top">
+<span class="q-number">085</span>
+<span class="q-category">Kết hợp làm ăn</span>
+</div>
+<h3>Hãy thiết kế một mô hình phân quyền để hạn chế xung đột.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy thiết kế một mô hình phân quyền để hạn chế xung đột." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kết hợp làm ăn" data-search="kết hợp làm ăn những nguyên tắc tiền bạc nào hai người nên thống nhất trước khi góp vốn?">
+<div class="q-top">
+<span class="q-number">086</span>
+<span class="q-category">Kết hợp làm ăn</span>
+</div>
+<h3>Những nguyên tắc tiền bạc nào hai người nên thống nhất trước khi góp vốn?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Những nguyên tắc tiền bạc nào hai người nên thống nhất trước khi góp vốn?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kết hợp làm ăn" data-search="kết hợp làm ăn hãy gợi ý 5 kpi phù hợp với một nhóm gồm hai profile này.">
+<div class="q-top">
+<span class="q-number">087</span>
+<span class="q-category">Kết hợp làm ăn</span>
+</div>
+<h3>Hãy gợi ý 5 KPI phù hợp với một nhóm gồm hai profile này.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy gợi ý 5 KPI phù hợp với một nhóm gồm hai profile này." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kết hợp làm ăn" data-search="kết hợp làm ăn điều kiện nào khiến việc hợp tác nên bắt đầu ở quy mô nhỏ trước?">
+<div class="q-top">
+<span class="q-number">088</span>
+<span class="q-category">Kết hợp làm ăn</span>
+</div>
+<h3>Điều kiện nào khiến việc hợp tác nên bắt đầu ở quy mô nhỏ trước?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điều kiện nào khiến việc hợp tác nên bắt đầu ở quy mô nhỏ trước?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kết hợp làm ăn" data-search="kết hợp làm ăn hãy xây dựng checklist 20 câu hỏi trước khi ký hợp đồng với đối tác.">
+<div class="q-top">
+<span class="q-number">089</span>
+<span class="q-category">Kết hợp làm ăn</span>
+</div>
+<h3>Hãy xây dựng checklist 20 câu hỏi trước khi ký hợp đồng với đối tác.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy xây dựng checklist 20 câu hỏi trước khi ký hợp đồng với đối tác." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Kết hợp làm ăn" data-search="kết hợp làm ăn nếu hai người bất đồng chiến lược, hãy thiết kế quy trình ra quyết định không phụ thuộc cảm xúc.">
+<div class="q-top">
+<span class="q-number">090</span>
+<span class="q-category">Kết hợp làm ăn</span>
+</div>
+<h3>Nếu hai người bất đồng chiến lược, hãy thiết kế quy trình ra quyết định không phụ thuộc cảm xúc.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Nếu hai người bất đồng chiến lược, hãy thiết kế quy trình ra quyết định không phụ thuộc cảm xúc." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Ra quyết định &amp; thời điểm" data-search="ra quyết định &amp; thời điểm hãy giúp tôi nhìn một quyết định dưới ba góc: lý trí, cảm xúc và xu hướng hành vi.">
+<div class="q-top">
+<span class="q-number">091</span>
+<span class="q-category">Ra quyết định &amp; thời điểm</span>
+</div>
+<h3>Hãy giúp tôi nhìn một quyết định dưới ba góc: lý trí, cảm xúc và xu hướng hành vi.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy giúp tôi nhìn một quyết định dưới ba góc: lý trí, cảm xúc và xu hướng hành vi." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Ra quyết định &amp; thời điểm" data-search="ra quyết định &amp; thời điểm tôi dễ ra quyết định sai vì thiếu dữ liệu hay vì quá suy nghĩ?">
+<div class="q-top">
+<span class="q-number">092</span>
+<span class="q-category">Ra quyết định &amp; thời điểm</span>
+</div>
+<h3>Tôi dễ ra quyết định sai vì thiếu dữ liệu hay vì quá suy nghĩ?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi dễ ra quyết định sai vì thiếu dữ liệu hay vì quá suy nghĩ?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Ra quyết định &amp; thời điểm" data-search="ra quyết định &amp; thời điểm hãy tạo một ma trận quyết định phù hợp với tính cách của tôi.">
+<div class="q-top">
+<span class="q-number">093</span>
+<span class="q-category">Ra quyết định &amp; thời điểm</span>
+</div>
+<h3>Hãy tạo một ma trận quyết định phù hợp với tính cách của tôi.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy tạo một ma trận quyết định phù hợp với tính cách của tôi." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Ra quyết định &amp; thời điểm" data-search="ra quyết định &amp; thời điểm khi nào tôi nên thử nghiệm nhỏ thay vì cam kết lớn?">
+<div class="q-top">
+<span class="q-number">094</span>
+<span class="q-category">Ra quyết định &amp; thời điểm</span>
+</div>
+<h3>Khi nào tôi nên thử nghiệm nhỏ thay vì cam kết lớn?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Khi nào tôi nên thử nghiệm nhỏ thay vì cam kết lớn?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Ra quyết định &amp; thời điểm" data-search="ra quyết định &amp; thời điểm những tín hiệu nào cho thấy tôi đang trì hoãn vì sợ hãi?">
+<div class="q-top">
+<span class="q-number">095</span>
+<span class="q-category">Ra quyết định &amp; thời điểm</span>
+</div>
+<h3>Những tín hiệu nào cho thấy tôi đang trì hoãn vì sợ hãi?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Những tín hiệu nào cho thấy tôi đang trì hoãn vì sợ hãi?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Ra quyết định &amp; thời điểm" data-search="ra quyết định &amp; thời điểm những tín hiệu nào cho thấy tôi đang hành động quá vội?">
+<div class="q-top">
+<span class="q-number">096</span>
+<span class="q-category">Ra quyết định &amp; thời điểm</span>
+</div>
+<h3>Những tín hiệu nào cho thấy tôi đang hành động quá vội?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Những tín hiệu nào cho thấy tôi đang hành động quá vội?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Ra quyết định &amp; thời điểm" data-search="ra quyết định &amp; thời điểm hãy đặt 10 câu hỏi kiểm tra một cơ hội trước khi tôi nhận lời.">
+<div class="q-top">
+<span class="q-number">097</span>
+<span class="q-category">Ra quyết định &amp; thời điểm</span>
+</div>
+<h3>Hãy đặt 10 câu hỏi kiểm tra một cơ hội trước khi tôi nhận lời.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy đặt 10 câu hỏi kiểm tra một cơ hội trước khi tôi nhận lời." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Ra quyết định &amp; thời điểm" data-search="ra quyết định &amp; thời điểm tôi nên cân bằng sự ổn định và thử nghiệm như thế nào?">
+<div class="q-top">
+<span class="q-number">098</span>
+<span class="q-category">Ra quyết định &amp; thời điểm</span>
+</div>
+<h3>Tôi nên cân bằng sự ổn định và thử nghiệm như thế nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên cân bằng sự ổn định và thử nghiệm như thế nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Ra quyết định &amp; thời điểm" data-search="ra quyết định &amp; thời điểm hãy chuyển một vấn đề mơ hồ thành một cây quyết định rõ ràng.">
+<div class="q-top">
+<span class="q-number">099</span>
+<span class="q-category">Ra quyết định &amp; thời điểm</span>
+</div>
+<h3>Hãy chuyển một vấn đề mơ hồ thành một cây quyết định rõ ràng.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy chuyển một vấn đề mơ hồ thành một cây quyết định rõ ràng." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Ra quyết định &amp; thời điểm" data-search="ra quyết định &amp; thời điểm hãy cho tôi một quy trình 24 giờ để xử lý một quyết định quan trọng mà không hoảng loạn.">
+<div class="q-top">
+<span class="q-number">100</span>
+<span class="q-category">Ra quyết định &amp; thời điểm</span>
+</div>
+<h3>Hãy cho tôi một quy trình 24 giờ để xử lý một quyết định quan trọng mà không hoảng loạn.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy cho tôi một quy trình 24 giờ để xử lý một quyết định quan trọng mà không hoảng loạn." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Phát triển bản thân" data-search="phát triển bản thân ba năng lực nào nên được rèn trong 12 tháng tới để tạo đòn bẩy lớn nhất?">
+<div class="q-top">
+<span class="q-number">101</span>
+<span class="q-category">Phát triển bản thân</span>
+</div>
+<h3>Ba năng lực nào nên được rèn trong 12 tháng tới để tạo đòn bẩy lớn nhất?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Ba năng lực nào nên được rèn trong 12 tháng tới để tạo đòn bẩy lớn nhất?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Phát triển bản thân" data-search="phát triển bản thân thói quen nào có khả năng cải thiện nhiều lĩnh vực cùng lúc?">
+<div class="q-top">
+<span class="q-number">102</span>
+<span class="q-category">Phát triển bản thân</span>
+</div>
+<h3>Thói quen nào có khả năng cải thiện nhiều lĩnh vực cùng lúc?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Thói quen nào có khả năng cải thiện nhiều lĩnh vực cùng lúc?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Phát triển bản thân" data-search="phát triển bản thân tôi nên tập trung vào kỷ luật, giao tiếp, sáng tạo hay quản trị năng lượng?">
+<div class="q-top">
+<span class="q-number">103</span>
+<span class="q-category">Phát triển bản thân</span>
+</div>
+<h3>Tôi nên tập trung vào kỷ luật, giao tiếp, sáng tạo hay quản trị năng lượng?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên tập trung vào kỷ luật, giao tiếp, sáng tạo hay quản trị năng lượng?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Phát triển bản thân" data-search="phát triển bản thân hãy thiết kế một hệ thống tự quan sát hàng tuần dành cho tôi.">
+<div class="q-top">
+<span class="q-number">104</span>
+<span class="q-category">Phát triển bản thân</span>
+</div>
+<h3>Hãy thiết kế một hệ thống tự quan sát hàng tuần dành cho tôi.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy thiết kế một hệ thống tự quan sát hàng tuần dành cho tôi." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Phát triển bản thân" data-search="phát triển bản thân tôi có xu hướng đặt mục tiêu quá cao hay quá thấp?">
+<div class="q-top">
+<span class="q-number">105</span>
+<span class="q-category">Phát triển bản thân</span>
+</div>
+<h3>Tôi có xu hướng đặt mục tiêu quá cao hay quá thấp?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi có xu hướng đặt mục tiêu quá cao hay quá thấp?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Phát triển bản thân" data-search="phát triển bản thân hãy gợi ý cách biến điểm yếu thành một hệ thống bù trừ.">
+<div class="q-top">
+<span class="q-number">106</span>
+<span class="q-category">Phát triển bản thân</span>
+</div>
+<h3>Hãy gợi ý cách biến điểm yếu thành một hệ thống bù trừ.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy gợi ý cách biến điểm yếu thành một hệ thống bù trừ." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Phát triển bản thân" data-search="phát triển bản thân hãy thiết kế kế hoạch 90 ngày có thể đo lường được.">
+<div class="q-top">
+<span class="q-number">107</span>
+<span class="q-category">Phát triển bản thân</span>
+</div>
+<h3>Hãy thiết kế kế hoạch 90 ngày có thể đo lường được.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy thiết kế kế hoạch 90 ngày có thể đo lường được." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Phát triển bản thân" data-search="phát triển bản thân những môi trường nào khiến tôi tiến bộ nhanh hơn?">
+<div class="q-top">
+<span class="q-number">108</span>
+<span class="q-category">Phát triển bản thân</span>
+</div>
+<h3>Những môi trường nào khiến tôi tiến bộ nhanh hơn?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Những môi trường nào khiến tôi tiến bộ nhanh hơn?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Phát triển bản thân" data-search="phát triển bản thân hãy gợi ý 5 thí nghiệm cá nhân để kiểm chứng các giả thuyết về bản thân.">
+<div class="q-top">
+<span class="q-number">109</span>
+<span class="q-category">Phát triển bản thân</span>
+</div>
+<h3>Hãy gợi ý 5 thí nghiệm cá nhân để kiểm chứng các giả thuyết về bản thân.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy gợi ý 5 thí nghiệm cá nhân để kiểm chứng các giả thuyết về bản thân." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Phát triển bản thân" data-search="phát triển bản thân hãy tạo một bản 'hướng dẫn sử dụng bản thân' dài một trang.">
+<div class="q-top">
+<span class="q-number">110</span>
+<span class="q-category">Phát triển bản thân</span>
+</div>
+<h3>Hãy tạo một bản 'hướng dẫn sử dụng bản thân' dài một trang.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy tạo một bản 'hướng dẫn sử dụng bản thân' dài một trang." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Nuôi dạy &amp; giáo dục" data-search="nuôi dạy &amp; giáo dục nếu profile là của trẻ, cha mẹ nên chú ý kiểu học và động lực nào?">
+<div class="q-top">
+<span class="q-number">111</span>
+<span class="q-category">Nuôi dạy &amp; giáo dục</span>
+</div>
+<h3>Nếu profile là của trẻ, cha mẹ nên chú ý kiểu học và động lực nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Nếu profile là của trẻ, cha mẹ nên chú ý kiểu học và động lực nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Nuôi dạy &amp; giáo dục" data-search="nuôi dạy &amp; giáo dục trẻ có thể cần kiểu phản hồi nào để phát triển mà không phụ thuộc vào khen thưởng?">
+<div class="q-top">
+<span class="q-number">112</span>
+<span class="q-category">Nuôi dạy &amp; giáo dục</span>
+</div>
+<h3>Trẻ có thể cần kiểu phản hồi nào để phát triển mà không phụ thuộc vào khen thưởng?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Trẻ có thể cần kiểu phản hồi nào để phát triển mà không phụ thuộc vào khen thưởng?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Nuôi dạy &amp; giáo dục" data-search="nuôi dạy &amp; giáo dục điểm nào cha mẹ dễ hiểu nhầm ở trẻ?">
+<div class="q-top">
+<span class="q-number">113</span>
+<span class="q-category">Nuôi dạy &amp; giáo dục</span>
+</div>
+<h3>Điểm nào cha mẹ dễ hiểu nhầm ở trẻ?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Điểm nào cha mẹ dễ hiểu nhầm ở trẻ?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Nuôi dạy &amp; giáo dục" data-search="nuôi dạy &amp; giáo dục hãy gợi ý môi trường học tập phù hợp với đặc điểm hồ sơ.">
+<div class="q-top">
+<span class="q-number">114</span>
+<span class="q-category">Nuôi dạy &amp; giáo dục</span>
+</div>
+<h3>Hãy gợi ý môi trường học tập phù hợp với đặc điểm hồ sơ.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy gợi ý môi trường học tập phù hợp với đặc điểm hồ sơ." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Nuôi dạy &amp; giáo dục" data-search="nuôi dạy &amp; giáo dục khi trẻ chống đối, phụ huynh nên kiểm tra nhu cầu nào trước?">
+<div class="q-top">
+<span class="q-number">115</span>
+<span class="q-category">Nuôi dạy &amp; giáo dục</span>
+</div>
+<h3>Khi trẻ chống đối, phụ huynh nên kiểm tra nhu cầu nào trước?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Khi trẻ chống đối, phụ huynh nên kiểm tra nhu cầu nào trước?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Nuôi dạy &amp; giáo dục" data-search="nuôi dạy &amp; giáo dục hãy đề xuất cách nói chuyện với trẻ về điểm mạnh mà không gắn nhãn tính cách.">
+<div class="q-top">
+<span class="q-number">116</span>
+<span class="q-category">Nuôi dạy &amp; giáo dục</span>
+</div>
+<h3>Hãy đề xuất cách nói chuyện với trẻ về điểm mạnh mà không gắn nhãn tính cách.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy đề xuất cách nói chuyện với trẻ về điểm mạnh mà không gắn nhãn tính cách." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Nuôi dạy &amp; giáo dục" data-search="nuôi dạy &amp; giáo dục tôi có thể dùng nhiều profile để hiểu sự khác biệt giữa anh chị em như thế nào?">
+<div class="q-top">
+<span class="q-number">117</span>
+<span class="q-category">Nuôi dạy &amp; giáo dục</span>
+</div>
+<h3>Tôi có thể dùng nhiều profile để hiểu sự khác biệt giữa anh chị em như thế nào?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi có thể dùng nhiều profile để hiểu sự khác biệt giữa anh chị em như thế nào?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Nuôi dạy &amp; giáo dục" data-search="nuôi dạy &amp; giáo dục hãy gợi ý hoạt động gia đình giúp các thành viên hiểu nhau hơn.">
+<div class="q-top">
+<span class="q-number">118</span>
+<span class="q-category">Nuôi dạy &amp; giáo dục</span>
+</div>
+<h3>Hãy gợi ý hoạt động gia đình giúp các thành viên hiểu nhau hơn.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy gợi ý hoạt động gia đình giúp các thành viên hiểu nhau hơn." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Nuôi dạy &amp; giáo dục" data-search="nuôi dạy &amp; giáo dục những điều gì tuyệt đối không nên suy diễn từ một hồ sơ của trẻ?">
+<div class="q-top">
+<span class="q-number">119</span>
+<span class="q-category">Nuôi dạy &amp; giáo dục</span>
+</div>
+<h3>Những điều gì tuyệt đối không nên suy diễn từ một hồ sơ của trẻ?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Những điều gì tuyệt đối không nên suy diễn từ một hồ sơ của trẻ?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Nuôi dạy &amp; giáo dục" data-search="nuôi dạy &amp; giáo dục hãy tạo một bản hướng dẫn giao tiếp với trẻ bằng ngôn ngữ đơn giản.">
+<div class="q-top">
+<span class="q-number">120</span>
+<span class="q-category">Nuôi dạy &amp; giáo dục</span>
+</div>
+<h3>Hãy tạo một bản hướng dẫn giao tiếp với trẻ bằng ngôn ngữ đơn giản.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy tạo một bản hướng dẫn giao tiếp với trẻ bằng ngôn ngữ đơn giản." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Xây dựng nội dung &amp; thương hiệu" data-search="xây dựng nội dung &amp; thương hiệu từ hồ sơ, những chủ đề nào tôi có thể chia sẻ như trải nghiệm cá nhân mà không phóng đại?">
+<div class="q-top">
+<span class="q-number">121</span>
+<span class="q-category">Xây dựng nội dung &amp; thương hiệu</span>
+</div>
+<h3>Từ hồ sơ, những chủ đề nào tôi có thể chia sẻ như trải nghiệm cá nhân mà không phóng đại?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Từ hồ sơ, những chủ đề nào tôi có thể chia sẻ như trải nghiệm cá nhân mà không phóng đại?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Xây dựng nội dung &amp; thương hiệu" data-search="xây dựng nội dung &amp; thương hiệu phong cách kể chuyện nào có thể tự nhiên với tôi?">
+<div class="q-top">
+<span class="q-number">122</span>
+<span class="q-category">Xây dựng nội dung &amp; thương hiệu</span>
+</div>
+<h3>Phong cách kể chuyện nào có thể tự nhiên với tôi?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Phong cách kể chuyện nào có thể tự nhiên với tôi?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Xây dựng nội dung &amp; thương hiệu" data-search="xây dựng nội dung &amp; thương hiệu hãy biến điểm mạnh của profile thành 10 ý tưởng nội dung.">
+<div class="q-top">
+<span class="q-number">123</span>
+<span class="q-category">Xây dựng nội dung &amp; thương hiệu</span>
+</div>
+<h3>Hãy biến điểm mạnh của profile thành 10 ý tưởng nội dung.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy biến điểm mạnh của profile thành 10 ý tưởng nội dung." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Xây dựng nội dung &amp; thương hiệu" data-search="xây dựng nội dung &amp; thương hiệu hãy tạo outline một bài viết giúp người đọc hiểu bản thân qua một câu chuyện cụ thể.">
+<div class="q-top">
+<span class="q-number">124</span>
+<span class="q-category">Xây dựng nội dung &amp; thương hiệu</span>
+</div>
+<h3>Hãy tạo outline một bài viết giúp người đọc hiểu bản thân qua một câu chuyện cụ thể.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy tạo outline một bài viết giúp người đọc hiểu bản thân qua một câu chuyện cụ thể." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Xây dựng nội dung &amp; thương hiệu" data-search="xây dựng nội dung &amp; thương hiệu hãy dùng dữ liệu profile để gợi ý một bộ câu hỏi phỏng vấn chính mình.">
+<div class="q-top">
+<span class="q-number">125</span>
+<span class="q-category">Xây dựng nội dung &amp; thương hiệu</span>
+</div>
+<h3>Hãy dùng dữ liệu profile để gợi ý một bộ câu hỏi phỏng vấn chính mình.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy dùng dữ liệu profile để gợi ý một bộ câu hỏi phỏng vấn chính mình." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Xây dựng nội dung &amp; thương hiệu" data-search="xây dựng nội dung &amp; thương hiệu tôi nên tránh kiểu xây thương hiệu nào vì không phù hợp với tính cách?">
+<div class="q-top">
+<span class="q-number">126</span>
+<span class="q-category">Xây dựng nội dung &amp; thương hiệu</span>
+</div>
+<h3>Tôi nên tránh kiểu xây thương hiệu nào vì không phù hợp với tính cách?</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Tôi nên tránh kiểu xây thương hiệu nào vì không phù hợp với tính cách?" type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Xây dựng nội dung &amp; thương hiệu" data-search="xây dựng nội dung &amp; thương hiệu hãy tạo 5 góc nhìn khác nhau cho cùng một chủ đề.">
+<div class="q-top">
+<span class="q-number">127</span>
+<span class="q-category">Xây dựng nội dung &amp; thương hiệu</span>
+</div>
+<h3>Hãy tạo 5 góc nhìn khác nhau cho cùng một chủ đề.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy tạo 5 góc nhìn khác nhau cho cùng một chủ đề." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Xây dựng nội dung &amp; thương hiệu" data-search="xây dựng nội dung &amp; thương hiệu hãy biến một kết luận trong hồ sơ thành infographic dễ hiểu.">
+<div class="q-top">
+<span class="q-number">128</span>
+<span class="q-category">Xây dựng nội dung &amp; thương hiệu</span>
+</div>
+<h3>Hãy biến một kết luận trong hồ sơ thành infographic dễ hiểu.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy biến một kết luận trong hồ sơ thành infographic dễ hiểu." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Xây dựng nội dung &amp; thương hiệu" data-search="xây dựng nội dung &amp; thương hiệu hãy tạo dàn ý video 3 phút về một chủ đề nổi bật trong profile.">
+<div class="q-top">
+<span class="q-number">129</span>
+<span class="q-category">Xây dựng nội dung &amp; thương hiệu</span>
+</div>
+<h3>Hãy tạo dàn ý video 3 phút về một chủ đề nổi bật trong profile.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy tạo dàn ý video 3 phút về một chủ đề nổi bật trong profile." type="button"><span>⧉</span> Copy prompt</button>
+</article>
+<article class="question-card" data-category="Xây dựng nội dung &amp; thương hiệu" data-search="xây dựng nội dung &amp; thương hiệu hãy giúp tôi phân biệt nội dung chiêm nghiệm và nội dung khẳng định quá mức.">
+<div class="q-top">
+<span class="q-number">130</span>
+<span class="q-category">Xây dựng nội dung &amp; thương hiệu</span>
+</div>
+<h3>Hãy giúp tôi phân biệt nội dung chiêm nghiệm và nội dung khẳng định quá mức.</h3>
+<button class="copy-question" data-copy="Hãy dùng dữ liệu trong các file TXT Huyền Sư Kabala làm nguồn tham chiếu chính cho câu hỏi dưới đây. Phân biệt dữ liệu, diễn giải và suy luận; không khẳng định tuyệt đối. Trả lời bằng ngôn ngữ đời thường, cụ thể, có ví dụ và hướng ứng dụng khi phù hợp.
+
+Câu hỏi: Hãy giúp tôi phân biệt nội dung chiêm nghiệm và nội dung khẳng định quá mức." type="button"><span>⧉</span> Copy prompt</button>
+</article></div>
+<div class="empty hidden" id="empty">Không tìm thấy câu hỏi phù hợp. Hãy thử từ khóa khác.</div>
+</div>
+</section>
+<section class="section value-section">
+<div class="container">
+<div class="section-head">
+<div class="section-label">06 · Ý nghĩa sử dụng &amp; giá trị VIP</div>
+<h2>Vì sao một file TXT lại có giá trị?</h2>
+<p class="lead">Huyền Sư không chỉ tạo ra một bản luận giải. Nó tạo ra một lớp dữ liệu có thể tiếp tục được sử dụng với AI, qua nhiều cuộc trò chuyện và nhiều bài toán khác nhau.</p>
+</div>
+<div class="value-layout">
+<div class="value-main">
+<div class="value-card highlight"><div class="value-icon">✦</div><div><h3>Dữ liệu là tài sản tái sử dụng</h3><p>Bạn tạo profile một lần, sau đó có thể dùng TXT làm “bộ nhớ ngữ cảnh” cho nhiều mục đích: hỏi sâu, so sánh, viết nội dung, lập kế hoạch, nghiên cứu hoặc đưa vào NotebookLM.</p></div></div>
+<div class="value-card"><div class="value-icon">◎</div><div><h3>AI mạnh hơn khi có ngữ cảnh</h3><p>Thay vì hỏi AI một câu chung chung, bạn cung cấp dữ liệu có cấu trúc rồi đặt câu hỏi cụ thể. Điều này giúp cuộc hội thoại đi thẳng vào vấn đề cần khám phá.</p></div></div>
+<div class="value-card"><div class="value-icon">↗</div><div><h3>Nhiều người, nhiều góc nhìn</h3><p>Mỗi profile là một nguồn ngữ cảnh độc lập. Khi bài toán phù hợp, nhiều profile có thể được đặt cạnh nhau để nhìn quan hệ, vai trò, khác biệt và điểm bổ trợ.</p></div></div>
+</div>
+<aside class="vip-card">
+<div class="vip-badge">VIP</div>
+<h3>Giá trị của gói VIP nằm ở “khả năng sử dụng tiếp”</h3>
+<p>VIP phù hợp khi bạn không chỉ muốn xem một profile, mà muốn xây dựng cả một thư viện hồ sơ để dùng lâu dài.</p>
+<div class="vip-list">
+<div><span>✓</span><strong>20+ profile</strong><small>Cho bản thân, gia đình, đội nhóm, đối tác hoặc khách hàng.</small></div>
+<div><span>✓</span><strong>TXT không giới hạn</strong><small>Lưu, đọc lại, đưa sang AI khác hoặc làm nguồn cho NotebookLM.</small></div>
+<div><span>✓</span><strong>Một lần tạo, nhiều lần dùng</strong><small>Không bị “đóng khung” trong một lần luận giải.</small></div>
+<div><span>✓</span><strong>Hệ sinh thái AI</strong><small>ChatGPT, NotebookLM, Gemini, Claude, DeepSeek và các workflow khác.</small></div>
+</div>
+<a class="btn btn-primary" href="index.html#pricing">Xem quyền lợi VIP →</a>
+</aside>
+</div>
+<div class="value-bottom">
+<div><strong>1 profile</strong><span>→ một bộ dữ liệu cá nhân có thể dùng nhiều lần</span></div>
+<div><strong>2+ profile</strong><span>→ mở ra bài toán so sánh, quan hệ và hợp tác</span></div>
+<div><strong>20+ profile</strong><span>→ biến Huyền Sư thành thư viện dữ liệu cá nhân / gia đình / đội nhóm</span></div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;width:100%;">
+<span>© <span id="year"></span> Kabala · Huyền Sư AI</span>
+<span><a href="index.html" style="color:#94a3b8;">← Quay lại trang Huyền Sư</a> · Huyền học mang tính tham khảo và chiêm nghiệm.</span>
+</div>
+</footer>
+<script>
+const cards = Array.from(document.querySelectorAll('.question-card'));
+const chips = Array.from(document.querySelectorAll('.filter-chip'));
+const search = document.getElementById('search');
+const count = document.getElementById('count');
+const empty = document.getElementById('empty');
+const viewMode = document.getElementById('viewMode');
+const grid = document.getElementById('questionGrid');
+const randomPreview = document.getElementById('randomQuestionPreview');
+let activeFilter = 'Tất cả';
+let randomIds = [];
+
+function copyText(text, button) {
+  const done = () => {
+    if (!button) return;
+    const old = button.innerHTML;
+    button.innerHTML = '✓ Đã copy';
+    setTimeout(() => button.innerHTML = old, 1200);
+  };
+  const fallback = () => {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    ta.remove(); done();
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(done).catch(fallback);
+  } else fallback();
+}
+
+function shuffled(items) {
+  const a = items.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function getFilteredCards() {
+  const term = search.value.trim().toLowerCase();
+  return cards.filter(card => {
+    const cat = card.dataset.category;
+    const hay = (card.dataset.search || '').toLowerCase();
+    const okFilter = activeFilter === 'Tất cả' || cat === activeFilter;
+    const okSearch = !term || hay.includes(term);
+    return okFilter && okSearch;
+  });
+}
+
+function showLoading(callback) {
+  grid.classList.add('loading');
+  let loader = document.getElementById('questionLoading');
+  if (!loader) {
+    loader = document.createElement('div');
+    loader.id = 'questionLoading';
+    loader.className = 'loading-state';
+    loader.innerHTML = '<span class="spinner"></span><span>Đang chọn câu hỏi...</span>';
+    grid.parentNode.insertBefore(loader, grid);
+  }
+  loader.classList.remove('hidden');
+  setTimeout(() => {
+    loader.classList.add('hidden');
+    grid.classList.remove('loading');
+    callback();
+  }, 420);
+}
+
+function render(mode = 'auto') {
+  const term = search.value.trim();
+  const filtered = getFilteredCards();
+  let visibleCards = [];
+  let randomMode = false;
+
+  if (mode === 'random' || (!term && activeFilter === 'Tất cả')) {
+    if (mode === 'random' || randomIds.length !== 6) {
+      randomIds = shuffled(cards.map((_, i) => i)).slice(0, Math.min(6, cards.length));
+    }
+    visibleCards = randomIds.map(i => cards[i]);
+    randomMode = true;
+  } else {
+    visibleCards = filtered;
+  }
+
+  cards.forEach(card => card.classList.add('hidden'));
+  visibleCards.forEach(card => card.classList.remove('hidden'));
+  count.textContent = visibleCards.length;
+  empty.classList.toggle('hidden', visibleCards.length !== 0);
+  if (randomMode) {
+    viewMode.innerHTML = 'Đang gợi ý <strong>' + visibleCards.length + '</strong> câu hỏi ngẫu nhiên';
+  } else {
+    viewMode.innerHTML = 'Đang hiển thị <strong>' + visibleCards.length + '</strong> câu hỏi phù hợp';
+  }
+}
+
+function pickRandomPhilosophy() {
+  const philosophyCards = cards.filter(c => c.dataset.category === 'Triết học & ý nghĩa');
+  const card = philosophyCards[Math.floor(Math.random() * philosophyCards.length)];
+  return card ? card.querySelector('h3').textContent.trim() : 'Điều gì đang thực sự có ý nghĩa với tôi ở giai đoạn này của cuộc sống?';
+}
+
+function updateRandomPreview(question) {
+  randomPreview.textContent = question;
+}
+
+function copyRandomQuestion(button) {
+  const question = pickRandomPhilosophy();
+  updateRandomPreview(question);
+  copyText(question, button);
+}
+
+document.getElementById('randomQuestionTop').addEventListener('click', e => copyRandomQuestion(e.currentTarget));
+document.getElementById('copyRandom').addEventListener('click', e => copyRandomQuestion(e.currentTarget));
+document.querySelectorAll('.copy-case').forEach(button => { button.addEventListener('click', () => { const prompt = button.closest('.case-slide').querySelector('.case-prompt p').textContent.trim(); copyText(prompt, button); }); });
+
+document.querySelectorAll('.copy-question').forEach(button => {
+  button.addEventListener('click', () => copyText(button.dataset.copy, button));
+});
+
+document.getElementById('copyVisible').addEventListener('click', e => {
+  const visible = cards.filter(card => !card.classList.contains('hidden'));
+  const text = visible.map(card => card.querySelector('h3').textContent.trim()).join('\n');
+  if (text) copyText(text, e.currentTarget);
+});
+
+chips.forEach(chip => chip.addEventListener('click', () => {
+  activeFilter = chip.dataset.filter;
+  chips.forEach(c => c.classList.toggle('active', c === chip));
+  render();
+}));
+
+search.addEventListener('input', render);
+
+// Initial load: show 20 random questions with a small loading effect.
+showLoading(() => render('random'));
+
+// Update random preview without copying.
+updateRandomPreview(pickRandomPhilosophy());
+
+const caseSlides = Array.from(document.querySelectorAll('.case-slide'));
+const caseTrack = document.getElementById('caseTrack');
+const casePrev = document.getElementById('casePrev');
+const caseNext = document.getElementById('caseNext');
+const caseIndex = document.getElementById('caseIndex');
+const caseDots = document.getElementById('caseDots');
+let caseCurrent = 0;
+caseSlides.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.type = 'button'; dot.className = 'case-dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', 'Xem case ' + (i + 1));
+  dot.addEventListener('click', () => showCase(i));
+  caseDots.appendChild(dot);
+});
+const caseDotEls = Array.from(caseDots.children);
+function showCase(index) {
+  caseCurrent = (index + caseSlides.length) % caseSlides.length;
+  caseTrack.style.transform = 'translateX(-' + (caseCurrent * 100) + '%)';
+  caseSlides.forEach((slide, i) => slide.classList.toggle('active', i === caseCurrent));
+  caseDotEls.forEach((dot, i) => dot.classList.toggle('active', i === caseCurrent));
+  caseIndex.textContent = String(caseCurrent + 1).padStart(2, '0');
+}
+casePrev.addEventListener('click', () => showCase(caseCurrent - 1));
+caseNext.addEventListener('click', () => showCase(caseCurrent + 1));
+let touchStartX = 0;
+let touchStartY = 0;
+caseTrack.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; touchStartY = e.changedTouches[0].clientY; }, {passive:true});
+caseTrack.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) showCase(caseCurrent + (dx < 0 ? 1 : -1));
+}, {passive:true});
+document.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') showCase(caseCurrent - 1); if (e.key === 'ArrowRight') showCase(caseCurrent + 1); });
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
